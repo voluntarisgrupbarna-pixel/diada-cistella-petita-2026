@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2a Diada Cistella Petita al Barna · 13 Juny 2026</title>
+
+  <!-- OG / Compartir viral -->
+  <meta property="og:title" content="2a Diada Cistella Petita al Barna · 13 Juny">
+  <meta property="og:description" content="Som Barna. Som futur. Som orgull. 13 juny · 9:00–14:00h · La Nau del Clot. Escoleta, Premini i Mini. 15€ incl. samarreta.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cbgrupbarna.info">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Inscriu el teu fill/a a la 2a Diada Cistella Petita al Barna. 13 juny a La Nau del Clot. Categories: Escoleta, Premini i Mini. 15€.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,900;1,700;1,900&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #111111;
+      --dark2:  #1a1a1a;
+      --red:    #CC0000;
+      --gold:   #D4A017;
+      --cream:  #f0ece3;
+      --white:  #ffffff;
+      --black:  #111111;
+      --text-light: rgba(255,255,255,0.72);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--dark2);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 7px;
+      background: linear-gradient(to right,
+        #FF0018 14.28%, #FFA52C 14.28% 28.56%,
+        #FFFF41 28.56% 42.84%, #008018 42.84% 57.12%,
+        #0000F9 57.12% 71.4%,  #86007D 71.4%);
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--dark);
+      padding: 20px 24px 18px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border-bottom: 2px solid var(--red);
+    }
+    header img.logo {
+      width: 64px;
+      height: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(204,0,0,0.4));
+    }
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .header-text .edition {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+    .header-text h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(20px, 5vw, 30px);
+      font-weight: 900;
+      line-height: 1.0;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .header-nav {
+      margin-left: auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .header-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark2);
+      padding: 52px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .hero-lema {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(44px, 12vw, 86px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .hero-lema .normal { color: var(--white); }
+    .hero-lema .red    { color: var(--red);   font-style: italic; }
+    .hero-lema .gold   { color: var(--gold);  font-style: italic; }
+
+    .hero-phrase {
+      max-width: 540px;
+      margin: 0 auto 36px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-light);
+    }
+    .hero-phrase strong { color: var(--white); font-weight: 700; }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 40px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .cta-btn:hover { background: #aa0000; transform: translateY(-1px); }
+    .cta-btn:active { transform: translateY(0); }
+
+    /* ── INFO CARDS ── */
+    .info-section {
+      background: var(--cream);
+      padding: 52px 24px;
+    }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 32px;
+      display: block;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .info-card {
+      background: var(--white);
+      border-left: 4px solid var(--red);
+      padding: 24px 20px;
+    }
+    .info-card .card-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .info-card .card-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(26px, 6vw, 38px);
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.0;
+      text-transform: uppercase;
+    }
+    .info-card .card-value .accent { color: var(--red); }
+    .info-card .card-sub {
+      font-size: 13px;
+      color: #555;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    .info-card.gold-card { border-left-color: var(--gold); }
+    .info-card.gold-card .card-value .accent { color: var(--gold); }
+
+    /* ── VALORS ── */
+    .values-section {
+      background: var(--dark2);
+      padding: 52px 24px;
+    }
+    .values-section .section-label { color: var(--gold); }
+    .values-section .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(34px, 8vw, 58px);
+      font-weight: 900;
+      line-height: 1.0;
+      text-transform: uppercase;
+      max-width: 600px;
+      margin-bottom: 36px;
+    }
+    .values-section .section-title em { color: var(--red); font-style: italic; }
+    .values-list { max-width: 640px; }
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .value-item:last-child { border-bottom: none; }
+    .value-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      background: var(--red);
+      padding: 4px 8px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .value-text strong {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .value-text span {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* ── FRASES ── */
+    .quotes-section {
+      background: var(--red);
+      padding: 52px 24px;
+    }
+    .quote-block {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .quote-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(28px, 7vw, 52px);
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .quote-text .black { color: var(--black); }
+    .quote-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--white);
+      margin-bottom: 24px;
+    }
+
+    /* ── PAGAMENT ── */
+    .payment-section {
+      background: var(--cream);
+      padding: 52px 24px;
+    }
+    .payment-section .section-label { color: var(--red); }
+    .payment-box {
+      max-width: 680px;
+      background: var(--white);
+      border: 2px solid var(--black);
+      padding: 32px 28px;
+    }
+    .payment-box h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--black);
+    }
+    .payment-steps { list-style: none; }
+    .payment-steps li {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .payment-steps li:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--white);
+      background: var(--black);
+      padding: 3px 9px;
+      flex-shrink: 0;
+      height: fit-content;
+      margin-top: 2px;
+    }
+    .iban {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: 1px;
+      word-break: break-all;
+    }
+    .concept-box {
+      background: #f5f5f5;
+      border-left: 3px solid var(--gold);
+      padding: 8px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    /* ── FORMULARI ── */
+    .form-section {
+      background: var(--dark);
+      padding: 60px 24px 72px;
+    }
+    .form-section .section-label { color: var(--gold); }
+    .form-section h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 9vw, 64px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.0;
+      margin-bottom: 12px;
+    }
+    .form-section h2 em { color: var(--red); font-style: italic; }
+    .form-subtitle {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    form#inscripcio-form {
+      max-width: 560px;
+    }
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-group label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .form-group label .req { color: var(--red); }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 0;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-color: rgba(255,255,255,0.07);
+      cursor: pointer;
+    }
+    .form-group select option { background: #222; color: var(--white); }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--red);
+      background: rgba(255,255,255,0.10);
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    .file-upload-wrapper {
+      position: relative;
+    }
+    .file-upload-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.07);
+      border: 1px dashed rgba(255,255,255,0.3);
+      padding: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .file-upload-label:hover {
+      border-color: var(--red);
+      background: rgba(255,255,255,0.10);
+    }
+    .file-upload-label .upload-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .file-upload-label .upload-text {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+    .file-upload-label .upload-text strong {
+      color: var(--white);
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    #file-name-display {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--gold);
+    }
+    input[type="file"] { display: none; }
+
+    .form-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 28px 0;
+    }
+    .form-section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      padding: 18px 32px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .submit-btn:hover:not(:disabled) { background: #aa0000; transform: translateY(-1px); }
+    .submit-btn:disabled { background: #555; cursor: not-allowed; transform: none; }
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .success-box {
+      display: none;
+      background: rgba(0,180,80,0.12);
+      border: 1px solid #00b450;
+      padding: 28px 24px;
+      max-width: 560px;
+    }
+    .success-box h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #00b450;
+      margin-bottom: 8px;
+    }
+    .success-box p { font-size: 15px; color: var(--text-light); line-height: 1.6; }
+
+    .error-box {
+      display: none;
+      background: rgba(204,0,0,0.12);
+      border: 1px solid var(--red);
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #ff6666;
+    }
+
+    /* ── SHARE ── */
+    .share-section {
+      background: var(--dark2);
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .share-section p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      padding: 14px 28px;
+      transition: opacity 0.2s;
+    }
+    .share-btn:hover { opacity: 0.88; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 32px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: 2px solid var(--red);
+    }
+    footer .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    footer img { width: 44px; height: auto; }
+    footer .brand-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      line-height: 1.3;
+    }
+    footer .brand-text strong { color: var(--white); display: block; font-size: 16px; }
+    footer .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    footer a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--white); }
+    footer .footer-copy {
+      width: 100%;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .header-nav { display: none; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- RAINBOW BAR -->
+<div class="rainbow-bar"></div>
+
+<!-- HEADER -->
+<header>
+  <img src="logo.png" alt="CB Grup Barna" class="logo">
+  <div class="header-text">
+    <span class="edition">2a Edició · Juny 2026</span>
+    <h1>Diada Cistella<br>Petita al Barna</h1>
+  </div>
+  <nav class="header-nav">
+    <a href="#info">Info</a>
+    <a href="#valors">Valors</a>
+    <a href="#inscripcio">Inscriu-te</a>
+    <a href="https://www.cbgrupbarna.info" target="_blank" rel="noopener">Club</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-label">↓ Barri del Clot · Sant Martí · Barcelona</span>
+  <div class="hero-lema">
+    <div class="normal">SOM <span class="red">BARNA.</span></div>
+    <div class="normal">SOM <span class="red">FUTUR.</span></div>
+    <div class="normal">SOM <span class="gold">ORGULL.</span></div>
+  </div>
+  <p class="hero-phrase">
+    <strong>El futur del Barna comença aquí.</strong><br>
+    Al Barna, la igualtat i l'orgull es juguen des de la base.
+  </p>
+  <a href="#inscripcio" class="cta-btn">↓ Inscripcions obertes! Apunta't aquí</a>
+</section>
+
+<!-- INFO CARDS -->
+<section class="info-section" id="info">
+  <span class="section-label">↳ Quan i on</span>
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="card-tag">Data</span>
+      <div class="card-value"><span class="accent">13</span> JUNY</div>
+      <div class="card-sub">Dissabte · 9:00 – 14:00 h</div>
+    </div>
+    <div class="info-card">
+      <span class="card-tag">Lloc</span>
+      <div class="card-value" style="font-size: clamp(20px,5vw,30px);">LA NAU<br>DEL <span class="accent">CLOT</span></div>
+      <div class="card-sub">Barri del Clot · Barcelona</div>
+    </div>
+    <div class="info-card gold-card">
+      <span class="card-tag">Preu</span>
+      <div class="card-value"><span class="accent">15</span>€</div>
+      <div class="card-sub">Inclou samarreta + activitats</div>
+    </div>
+    <div class="info-card">
+      <span class="card-tag">Categories</span>
+      <div class="card-value" style="font-size: clamp(18px,4vw,26px);">ESCOLETA<br>PREMINI · <span class="accent">MINI</span></div>
+      <div class="card-sub">Per als més petits del club</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORS -->
+<section class="values-section" id="valors">
+  <span class="section-label">↳ Els nostres valors</span>
+  <h2 class="section-title">UN BÀSQUET<br>DE <em>BASE,</em><br>OBERT A <em>TOTHOM.</em></h2>
+  <div class="values-list">
+    <div class="value-item">
+      <span class="value-num">01</span>
+      <div class="value-text">
+        <strong>Orgull de club</strong>
+        <span>Orgullosos de ser del barri. 60 anys de bàsquet a Sant Martí.</span>
+      </div>
+    </div>
+    <div class="value-item">
+      <span class="value-num">02</span>
+      <div class="value-text">
+        <strong>Servei als més petits</strong>
+        <span>Una diada pensada per a Escoleta, Premini i Mini. El futur del Barna comença avui.</span>
+      </div>
+    </div>
+    <div class="value-item">
+      <span class="value-num">03</span>
+      <div class="value-text">
+        <strong>50% participació femenina</strong>
+        <span>Paritat real, no simbòlica. Igualtat i respecte en cada pista.</span>
+      </div>
+    </div>
+    <div class="value-item">
+      <span class="value-num">04</span>
+      <div class="value-text">
+        <strong>Mes de l'Orgull 🌈</strong>
+        <span>El bàsquet base també és per a tothom. Inclusió activa.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRASES -->
+<section class="quotes-section">
+  <div class="quote-block">
+    <div class="quote-text">"EL FUTUR DEL BARNA<br><span class="black">COMENÇA AQUÍ."</span></div>
+    <div class="quote-divider"></div>
+    <div class="quote-text" style="font-size: clamp(22px,5vw,38px);">"AL BARNA, LA IGUALTAT I L'ORGULL<br><span class="black">ES JUGUEN DES DE LA BASE."</span></div>
+  </div>
+</section>
+
+<!-- PAGAMENT -->
+<section class="payment-section" id="pagament">
+  <span class="section-label">↳ Com pagar</span>
+  <div class="payment-box">
+    <h3>Instruccions de pagament</h3>
+    <ul class="payment-steps">
+      <li>
+        <span class="step-num">01</span>
+        <div>
+          Fes una transferència bancària al compte:<br>
+          <span class="iban">ES42 0182 1797 3902 0409 9747</span>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <div>
+          Posa al concepte de la transferència:<br>
+          <span class="concept-box">Campus Estiu + NOM I COGNOMS JUGADOR/A</span>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <div>Fes una captura de pantalla o foto del comprovant i adjunta'l al formulari d'inscripció a continuació.</div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FORMULARI -->
+<section class="form-section" id="inscripcio">
+  <span class="section-label">↳ Formulari d'inscripció</span>
+  <h2>APUNTA'T<br>A LA <em>DIADA</em></h2>
+  <p class="form-subtitle">Omple el formulari amb les dades del/la jugador/a. Totes les inscripcions requereixen comprovant de pagament.</p>
+
+  <form id="inscripcio-form" novalidate>
+
+    <!-- MENOR -->
+    <div class="form-section-title">Dades del/la jugador/a</div>
+
+    <div class="form-group">
+      <label>Nom i cognoms del/la menor <span class="req">*</span></label>
+      <input type="text" name="nomMenor" placeholder="Ex: Pau García López" required autocomplete="name">
+    </div>
+
+    <hr class="form-divider">
+
+    <!-- TUTOR -->
+    <div class="form-section-title">Dades del tutor / pare / mare</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nom i cognoms <span class="req">*</span></label>
+        <input type="text" name="nomTutor" placeholder="Ex: Maria López" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>Telèfon de contacte <span class="req">*</span></label>
+        <input type="tel" name="telefon" placeholder="Ex: 612 345 678" required autocomplete="tel">
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <!-- SAMARRETA I CATEGORIA -->
+    <div class="form-section-title">Dades esportives</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Talla samarreta <span class="req">*</span></label>
+        <select name="talla" required>
+          <option value="" disabled selected>Selecciona talla</option>
+          <option>4 anys</option>
+          <option>6 anys</option>
+          <option>8 anys</option>
+          <option>10 anys</option>
+          <option>12 anys</option>
+          <option>14 anys</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Categoria <span class="req">*</span></label>
+        <select name="categoria" required>
+          <option value="" disabled selected>Selecciona categoria</option>
+          <option>Escoleta</option>
+          <option>Premini</option>
+          <option>Mini</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Equip <span class="req">*</span></label>
+        <input type="text" name="equip" placeholder="Ex: Mini Femení A" required>
+      </div>
+      <div class="form-group">
+        <label>Gènere <span class="req">*</span></label>
+        <select name="genere" required>
+          <option value="" disabled selected>Selecciona</option>
+          <option>Masculí</option>
+          <option>Femení</option>
+          <option>Mixt</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <!-- COMPROVANT -->
+    <div class="form-section-title">Comprovant de pagament</div>
+
+    <div class="form-group">
+      <label>Adjuntar comprovant de transferència <span class="req">*</span></label>
+      <div class="file-upload-wrapper">
+        <label class="file-upload-label" for="fitxer">
+          <span class="upload-icon">📎</span>
+          <div class="upload-text">
+            <strong>Pujar fitxer (imatge o PDF)</strong>
+            Mida màxima: 8 MB
+          </div>
+        </label>
+        <input type="file" id="fitxer" name="fitxer" accept="image/*,.pdf" required>
+        <div id="file-name-display"></div>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submit-btn">
+      <span class="spinner" id="spinner"></span>
+      <span id="submit-text">Enviar inscripció →</span>
+    </button>
+
+    <div class="error-box" id="error-box">
+      Hi ha hagut un error en enviar el formulari. Comprova la connexió i torna-ho a provar.
+      Si el problema persisteix, escriu-nos a <strong>voluntarisgrupbarna@gmail.com</strong>
+    </div>
+  </form>
+
+  <div class="success-box" id="success-box">
+    <h3>✓ Inscripció enviada!</h3>
+    <p>Hem rebut la inscripció correctament. En breu rebràs confirmació a <strong>voluntarisgrupbarna@gmail.com</strong>.<br><br>
+    Qualsevol dubte: <strong>voluntarisgrupbarna@gmail.com</strong></p>
+  </div>
+</section>
+
+<!-- SHARE -->
+<section class="share-section">
+  <p>Comparteix amb altres famílies del Barna</p>
+  <a class="share-btn"
+     href="https://wa.me/?text=🏀%20Som%20Barna.%20Som%20futur.%20Som%20orgull.%0A%0A2a%20Diada%20Cistella%20Petita%20al%20Barna%20🌈%0A📅%2013%20Juny%20%C2%B7%209%3A00-14%3A00h%0A📍%20La%20Nau%20del%20Clot%0A💶%2015€%20(samarreta%20incl.)%0A%0AEscoleta%20%C2%B7%20Premini%20%C2%B7%20Mini%0A%0AApunta't%20ara%3A%20www.cbgrupbarna.info"
+     target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor">
+      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.56.78 4.94 2.13 6.91L4.05 29l7.28-1.9A12.94 12.94 0 0016 28c6.63 0 12-5.37 12-12S22.63 3 16 3zm6.29 16.84c-.26.73-1.53 1.4-2.1 1.45-.57.05-1.12.24-3.8-.79-3.22-1.23-5.28-4.48-5.44-4.69-.16-.21-1.32-1.75-1.32-3.34 0-1.59.84-2.37 1.14-2.69.3-.32.65-.4.87-.4h.62c.2 0 .47-.08.73.56.26.64.9 2.23.98 2.39.08.16.13.35.03.56-.1.21-.16.34-.31.52-.16.18-.33.4-.47.54-.16.15-.33.32-.14.63.19.31.84 1.38 1.8 2.24 1.24 1.1 2.28 1.44 2.6 1.6.31.16.5.13.68-.08.19-.21.8-.93 1.01-1.25.21-.31.42-.26.71-.16.29.1 1.87.88 2.19 1.04.31.16.52.24.6.38.08.14.08.8-.18 1.53z"/>
+    </svg>
+    Compartir per WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="CB Grup Barna">
+    <div class="brand-text">
+      <strong>CB Grup Barna</strong>
+      Sant Martí · Barcelona · 1965
+    </div>
+  </div>
+  <nav class="footer-links">
+    <a href="https://www.cbgrupbarna.info" target="_blank" rel="noopener">cbgrupbarna.info</a>
+    <a href="https://www.instagram.com/cbgrupbarna" target="_blank" rel="noopener">@cbgrupbarna</a>
+    <a href="mailto:voluntarisgrupbarna@gmail.com">Contacte</a>
+  </nav>
+  <div class="footer-copy">
+    © 2026 CB Grup Barna · Totes les dades recollides es tracten conforme al RGPD · voluntarisgrupbarna@gmail.com
+  </div>
+</footer>
+
+<script>
+  // ── CONFIGURACIÓ ──────────────────────────────────────────────────────────
+  // IMPORTANT: Enganxa aquí la URL del teu Apps Script desplegat
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx8OTqxo40s-BVl6gZO3i-KqgDDyBfHAslMQ2HkBuLxtHd9NfKFzKirL-iAR_oRB3j8/exec';
+  // ─────────────────────────────────────────────────────────────────────────
+
+  const form     = document.getElementById('inscripcio-form');
+  const spinner  = document.getElementById('spinner');
+  const submitTx = document.getElementById('submit-text');
+  const submitBn = document.getElementById('submit-btn');
+  const errorBox = document.getElementById('error-box');
+  const successB = document.getElementById('success-box');
+  const fileInput= document.getElementById('fitxer');
+  const fileDisp = document.getElementById('file-name-display');
+
+  // Mostrar nom del fitxer seleccionat
+  fileInput.addEventListener('change', () => {
+    const f = fileInput.files[0];
+    if (f) {
+      if (f.size > 8 * 1024 * 1024) {
+        fileDisp.textContent = '⚠️ El fitxer és massa gran (màx. 8 MB)';
+        fileDisp.style.color = '#ff6666';
+        fileInput.value = '';
+      } else {
+        fileDisp.textContent = '✓ ' + f.name;
+        fileDisp.style.color = '';
+      }
+    }
+  });
+
+  // Llegir fitxer com base64
+  function readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload  = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.style.display = 'none';
+
+    // Validació bàsica
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      el.style.borderColor = '';
+      if (!el.value.trim()) {
+        el.style.borderColor = '#CC0000';
+        valid = false;
+      }
+    });
+    if (!valid) {
+      errorBox.textContent = 'Si us plau, omple tots els camps obligatoris marcats en vermell.';
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    // Activar spinner
+    spinner.style.display = 'block';
+    submitTx.textContent  = 'Enviant...';
+    submitBn.disabled     = true;
+
+    try {
+      // Recollir dades del formulari
+      const data = {
+        nomMenor:  form.nomMenor.value.trim(),
+        nomTutor:  form.nomTutor.value.trim(),
+        telefon:   form.telefon.value.trim(),
+        talla:     form.talla.value,
+        equip:     form.equip.value.trim(),
+        categoria: form.categoria.value,
+        genere:    form.genere.value,
+        fitxer:    null
+      };
+
+      // Llegir el fitxer adjunt
+      if (fileInput.files[0]) {
+        const b64 = await readFileAsBase64(fileInput.files[0]);
+        data.fitxer = {
+          nom:  fileInput.files[0].name,
+          tipus: fileInput.files[0].type,
+          dades: b64
+        };
+      }
+
+      // Enviar a Apps Script (no-cors: les dades s'envien però la resposta és opaca)
+      await fetch(APPS_SCRIPT_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body:    JSON.stringify(data)
+      });
+
+      // Mostrar èxit (amb no-cors assumim que ha anat bé)
+      form.style.display = 'none';
+      successB.style.display = 'block';
+      successB.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    } catch (err) {
+      errorBox.textContent = 'Error de connexió. Comprova la teva connexió a internet i torna-ho a provar.';
+      errorBox.style.display = 'block';
+      spinner.style.display  = 'none';
+      submitTx.textContent   = 'Enviar inscripció →';
+      submitBn.disabled      = false;
+    }
+  });
+</script>
+
+</body>
+</html>
