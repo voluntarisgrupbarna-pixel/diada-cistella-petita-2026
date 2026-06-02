@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Inscripcions · 2a Diada Cistella Petita al Barna</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:   #CC0000;
+  --gold:  #D4A017;
+  --dark:  #1a1a1a;
+  --card:  #242424;
+  --bord:  #333;
+  --cream: #f5f0e8;
+  --muted: #999;
+  --green: #27ae60;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--dark);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh}
+
+/* ── Rainbow ── */
+.rainbow{height:6px;background:linear-gradient(90deg,#FF0000 0%,#FF7F00 16.6%,#FFFF00 33.3%,#00CC00 50%,#0000FF 66.6%,#8B00FF 83.3%,#FF69B4 100%)}
+
+/* ── PIN SCREEN ── */
+#pin-screen{
+  position:fixed;inset:0;background:var(--dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:999;gap:0;
+}
+.pin-rainbow{height:5px;width:100%;position:absolute;top:0;background:linear-gradient(90deg,#FF0000 0%,#FF7F00 16.6%,#FFFF00 33.3%,#00CC00 50%,#0000FF 66.6%,#8B00FF 83.3%,#FF69B4 100%)}
+.pin-logo{width:72px;height:72px;object-fit:contain;margin-bottom:20px;opacity:.9}
+.pin-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.4rem,5vw,2rem);text-transform:uppercase;letter-spacing:.05em;text-align:center;line-height:1.1;margin-bottom:6px}
+.pin-sub{font-size:.85rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;text-align:center;margin-bottom:32px}
+.pin-box{background:#1e1e1e;border:2px solid var(--bord);border-radius:16px;padding:32px 28px;width:min(340px,90vw)}
+.pin-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;text-align:center}
+.pin-dots{display:flex;justify-content:center;gap:14px;margin-bottom:24px}
+.pin-dot{width:16px;height:16px;border-radius:50%;background:var(--bord);transition:background .2s}
+.pin-dot.filled{background:var(--red)}
+.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pin-btn{background:#2a2a2a;border:1px solid #3a3a3a;border-radius:10px;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;padding:14px;cursor:pointer;text-align:center;transition:background .15s,border-color .15s;user-select:none}
+.pin-btn:hover{background:#333;border-color:#555}
+.pin-btn:active{background:var(--red);border-color:var(--red)}
+.pin-btn.del{font-size:1rem;color:var(--muted)}
+.pin-btn.zero{grid-column:2}
+.pin-error{text-align:center;color:var(--red);font-size:.85rem;margin-top:12px;min-height:20px;font-weight:600}
+.pin-shake{animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+
+/* ── HEADER ── */
+header{background:#111;border-bottom:3px solid var(--red);padding:18px 24px 14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header img{width:48px;height:48px;object-fit:contain}
+.htext h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.1rem,3vw,1.7rem);text-transform:uppercase;letter-spacing:.04em;line-height:1.1;color:#fff}
+.htext p{font-size:.8rem;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.hmeta{margin-left:auto;text-align:right;font-size:.78rem;color:var(--muted);line-height:1.6}
+.hmeta span{color:var(--cream);font-weight:600}
+.stripe{height:4px;background:var(--red)}
+
+/* ── MAIN ── */
+main{max-width:1100px;margin:0 auto;padding:26px 16px 48px}
+
+/* ── KPI HERO ── */
+.kpi-hero{
+  background:linear-gradient(135deg,#1e1e1e,#2a1a1a);
+  border:2px solid var(--red);border-radius:16px;padding:28px 24px;margin-bottom:24px;
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+  position:relative;overflow:hidden;
+}
+.kpi-hero::before{content:'🏀';position:absolute;font-size:140px;opacity:.04;right:-16px;top:-24px;line-height:1}
+.kpi-num-block{text-align:center;min-width:120px}
+.kpi-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--red)}
+.kpi-of{font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.kpi-progress-block{flex:1;min-width:220px}
+.kpi-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(.9rem,2vw,1.15rem);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.progress-track{height:18px;background:#333;border-radius:99px;overflow:hidden;margin-bottom:8px}
+.progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--red),#ff4444);transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.progress-labels{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+.progress-labels .pct{color:var(--gold);font-weight:700;font-size:.9rem}
+.kpi-sub{font-size:.8rem;color:var(--muted);margin-top:8px}
+
+/* ── GRID ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px}
+@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:20px}
+.ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.ctitle::after{content:'';flex:1;height:1px;background:var(--bord);margin-left:4px}
+.ctitle .sub{font-size:.72rem;color:var(--muted);font-weight:400;letter-spacing:.05em;text-transform:none;white-space:nowrap}
+
+/* ── STAT ROWS (horizontal bars) ── */
+.stat-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.stat-row:last-child{margin-bottom:0}
+.stat-lbl{min-width:90px;font-size:.9rem;line-height:1.2}
+.stat-lbl small{display:block;font-size:.72rem;color:var(--muted);margin-top:1px}
+.stat-bar-w{flex:1;height:12px;background:#333;border-radius:99px;overflow:hidden}
+.stat-bar{height:100%;border-radius:99px;transition:width 1s ease}
+.stat-n{min-width:28px;text-align:right;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem}
+.stat-pct{min-width:40px;text-align:right;font-size:.78rem;color:var(--muted)}
+
+/* ── MINI KPIs (sexe/categoria) ── */
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.kpi-chip{flex:1;min-width:80px;background:#1e1e1e;border-radius:10px;border:1px solid var(--bord);padding:12px 10px;text-align:center}
+.kpi-chip .cn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;line-height:1}
+.kpi-chip .cl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+
+/* ── MATRIU ── */
+.matrix-wrap{overflow-x:auto}
+table.matrix{width:100%;border-collapse:collapse;font-size:.88rem}
+table.matrix th,table.matrix td{padding:9px 12px;text-align:center;border:1px solid var(--bord)}
+table.matrix th{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:#1e1e1e;color:var(--gold);font-size:.85rem}
+table.matrix th.row-h{text-align:left;color:var(--cream)}
+table.matrix td.row-h{text-align:left;font-weight:600;color:var(--cream);background:#1e1e1e}
+table.matrix td{color:var(--cream)}
+table.matrix tr:hover td{background:rgba(255,255,255,.03)}
+table.matrix td.zero{color:#444}
+table.matrix .total-col{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;background:#1e1e1e!important}
+table.matrix .total-row td{font-family:'Barlow Condensed',sans-serif;font-weight:700;background:#2a2a2a!important;color:var(--gold)}
+table.matrix .total-row td.row-h{color:var(--cream)}
+.cell-bar{height:4px;border-radius:99px;margin:4px auto 0;transition:width .8s ease}
+
+/* ── EQUIPS ── */
+.eq-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord)}
+.eq-item:last-child{border-bottom:none}
+.eq-rank{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--muted);min-width:22px}
+.eq-nom{flex:1;font-size:.88rem}
+.eq-badge{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;padding:2px 10px;border-radius:99px;min-width:34px;text-align:center}
+
+/* ── LOADING ── */
+#loading{text-align:center;padding:60px 20px;color:var(--muted)}
+.spinner{width:44px;height:44px;border:4px solid var(--bord);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.refresh-info{text-align:center;font-size:.78rem;color:var(--muted);margin-top:28px;padding-top:16px;border-top:1px solid var(--bord)}
+.refresh-info a{color:var(--gold);text-decoration:none}
+.refresh-info a:hover{text-decoration:underline}
+
+@media(max-width:600px){
+  header{padding:12px 14px}
+  .kpi-hero{flex-direction:column;gap:16px}
+  .kpi-num-block{min-width:unset}
+}
+</style>
+</head>
+<body>
+
+<!-- PIN SCREEN -->
+<div id="pin-screen">
+  <div class="pin-rainbow"></div>
+  <img class="pin-logo" src="escut.png" alt="CB Grup Barna" onerror="this.style.display='none'">
+  <div class="pin-title">Diada Cistella Petita</div>
+  <div class="pin-sub">Dashboard d'inscripcions · Accés restringit</div>
+  <div class="pin-box">
+    <div class="pin-label">Introdueix el PIN</div>
+    <div class="pin-dots" id="pin-dots">
+      <div class="pin-dot" id="d0"></div>
+      <div class="pin-dot" id="d1"></div>
+      <div class="pin-dot" id="d2"></div>
+      <div class="pin-dot" id="d3"></div>
+    </div>
+    <div class="pin-keypad">
+      <button class="pin-btn" onclick="addDigit('1')">1</button>
+      <button class="pin-btn" onclick="addDigit('2')">2</button>
+      <button class="pin-btn" onclick="addDigit('3')">3</button>
+      <button class="pin-btn" onclick="addDigit('4')">4</button>
+      <button class="pin-btn" onclick="addDigit('5')">5</button>
+      <button class="pin-btn" onclick="addDigit('6')">6</button>
+      <button class="pin-btn" onclick="addDigit('7')">7</button>
+      <button class="pin-btn" onclick="addDigit('8')">8</button>
+      <button class="pin-btn" onclick="addDigit('9')">9</button>
+      <button class="pin-btn zero" onclick="addDigit('0')">0</button>
+      <button class="pin-btn del" onclick="delDigit()">⌫</button>
+    </div>
+    <div class="pin-error" id="pin-error"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="app" style="display:none">
+  <div class="rainbow"></div>
+
+  <header>
+    <img src="escut.png" alt="CB Grup Barna" onerror="this.style.display='none'">
+    <div class="htext">
+      <h1>2a Diada Cistella Petita al Barna</h1>
+      <p>Dashboard d'inscripcions · 13 Juny 2026 · La Nau del Clot</p>
+    </div>
+    <div class="hmeta" id="meta-info">Actualitzant…</div>
+  </header>
+  <div class="stripe"></div>
+
+  <main>
+    <div id="loading">
+      <div class="spinner"></div>
+      <p>Carregant dades…</p>
+    </div>
+
+    <div id="dashboard" style="display:none">
+
+      <!-- KPI HERO amb progrés cap a 100 -->
+      <div class="kpi-hero">
+        <div class="kpi-num-block">
+          <div class="kpi-num" id="kpi-num">0</div>
+          <div class="kpi-of">/ 100 objectiu</div>
+        </div>
+        <div class="kpi-progress-block">
+          <div class="kpi-lbl">Inscripcions rebudes</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+          </div>
+          <div class="progress-labels">
+            <span>0</span>
+            <span class="pct" id="progress-pct">0%</span>
+            <span>100</span>
+          </div>
+          <div class="kpi-sub" id="kpi-sub">—</div>
+        </div>
+      </div>
+
+      <!-- Sexe + Categoria -->
+      <div class="grid2">
+
+        <!-- Per sexe -->
+        <div class="card">
+          <div class="ctitle">♀♂ Per sexe</div>
+          <div id="sexe-list"></div>
+        </div>
+
+        <!-- Per categoria / edat -->
+        <div class="card">
+          <div class="ctitle">🏀 Per categoria <span class="sub">/ edat</span></div>
+          <div id="cat-list"></div>
+        </div>
+
+      </div>
+
+      <!-- Matriu sexe × categoria -->
+      <div class="card" style="margin-bottom:18px">
+        <div class="ctitle">📊 Distribució sexe × categoria</div>
+        <div class="matrix-wrap" id="matrix-wrap"></div>
+      </div>
+
+      <!-- Equips -->
+      <div class="card">
+        <div class="ctitle">🏆 Equips participants</div>
+        <div id="equips-list"></div>
+      </div>
+
+      <div class="refresh-info">
+        ♻ S'actualitza cada 60 s &nbsp;·&nbsp;
+        <a href="https://cistella.cbgrupbarna.info" target="_blank">↗ Formulari inscripció</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.cbgrupbarna.info" target="_blank">CB Grup Barna</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ── PIN ── */
+const CORRECT_PIN = '3326';
+let pinBuffer = '';
+function addDigit(d) {
+  if (pinBuffer.length >= 4) return;
+  pinBuffer += d;
+  updateDots();
+  if (pinBuffer.length === 4) checkPin();
+}
+function delDigit() {
+  pinBuffer = pinBuffer.slice(0,-1);
+  updateDots();
+  document.getElementById('pin-error').textContent = '';
+}
+function updateDots() {
+  for (let i=0;i<4;i++) document.getElementById('d'+i).classList.toggle('filled', i < pinBuffer.length);
+}
+function checkPin() {
+  if (pinBuffer === CORRECT_PIN) {
+    document.getElementById('pin-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    sessionStorage.setItem('dash_ok','1');
+    loadStats();
+  } else {
+    document.getElementById('pin-error').textContent = 'PIN incorrecte. Torna a intentar-ho.';
+    document.getElementById('pin-dots').classList.add('pin-shake');
+    setTimeout(() => {
+      pinBuffer = '';
+      updateDots();
+      document.getElementById('pin-dots').classList.remove('pin-shake');
+    }, 500);
+  }
+}
+document.addEventListener('keydown', e => {
+  if (document.getElementById('pin-screen').style.display === 'none') return;
+  if (e.key >= '0' && e.key <= '9') addDigit(e.key);
+  if (e.key === 'Backspace') delDigit();
+});
+if (sessionStorage.getItem('dash_ok') === '1') {
+  document.getElementById('pin-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadStats();
+}
+
+/* ── COLORS ── */
+const C_SEXE = {
+  'Masculí': '#4a90d9',
+  'Femení':  '#e83e8c',
+  'Mixt':    '#D4A017',
+  '—':       '#555'
+};
+const C_CAT = {
+  'Escoleta': '#9b59b6',
+  'Premini':  '#CC0000',
+  'Mini':     '#D4A017',
+  '—':        '#555'
+};
+const AGE_RANGE = {
+  'Escoleta': '5–6 anys',
+  'Premini':  '7–8 anys',
+  'Mini':     '9–10 anys'
+};
+const CAT_ORDER    = ['Escoleta','Premini','Mini'];
+const SEXE_ORDER   = ['Masculí','Femení','Mixt'];
+
+let refreshT = null;
+
+async function loadStats() {
+  try {
+    const res = await fetch('/api/stats');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    render(await res.json());
+  } catch (err) {
+    console.error(err);
+    document.getElementById('loading').innerHTML =
+      '<p style="color:#CC0000;margin-top:40px">⚠️ No s\'han pogut carregar les dades.<br><small>' + err.message + '</small></p>';
+  }
+}
+
+function render(data) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+
+  const total = data.total || 0;
+
+  /* KPI + progrés */
+  animateCount('kpi-num', total);
+  const pct = Math.min(Math.round(total / 100 * 100), 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct + '%';
+  const restants = Math.max(0, 100 - total);
+  document.getElementById('kpi-sub').textContent =
+    restants > 0
+      ? `Falten ${restants} inscripcions per arribar a l'objectiu`
+      : '🎉 Objectiu de 100 assolit!';
+  document.getElementById('meta-info').innerHTML =
+    'Actualitzat<br><span>' + (data.updatedAt || '—') + '</span>';
+
+  /* Sexe */
+  const byGenere = data.byGenere || {};
+  const sexeHtml = SEXE_ORDER
+    .filter(s => byGenere[s])
+    .concat(Object.keys(byGenere).filter(s => !SEXE_ORDER.includes(s) && s !== '—'))
+    .map(s => {
+      const n   = byGenere[s] || 0;
+      const pct = total ? Math.round(n/total*100) : 0;
+      return `<div class="stat-row">
+        <div class="stat-lbl">${s}</div>
+        <div class="stat-bar-w"><div class="stat-bar" style="width:${pct}%;background:${C_SEXE[s]||'#888'}"></div></div>
+        <div class="stat-n">${n}</div>
+        <div class="stat-pct">${pct}%</div>
+      </div>`;
+    }).join('');
+  document.getElementById('sexe-list').innerHTML = sexeHtml ||
+    '<p style="color:#666;font-size:.9rem">Sense dades encara</p>';
+
+  /* Categoria / edat */
+  const byCat = data.byCategoria || {};
+  const catHtml = CAT_ORDER
+    .filter(c => byCat[c])
+    .concat(Object.keys(byCat).filter(c => !CAT_ORDER.includes(c) && c !== '—'))
+    .map(c => {
+      const n   = byCat[c] || 0;
+      const pct = total ? Math.round(n/total*100) : 0;
+      return `<div class="stat-row">
+        <div class="stat-lbl">${c}<small>${AGE_RANGE[c] || ''}</small></div>
+        <div class="stat-bar-w"><div class="stat-bar" style="width:${pct}%;background:${C_CAT[c]||'#888'}"></div></div>
+        <div class="stat-n">${n}</div>
+        <div class="stat-pct">${pct}%</div>
+      </div>`;
+    }).join('');
+  document.getElementById('cat-list').innerHTML = catHtml ||
+    '<p style="color:#666;font-size:.9rem">Sense dades encara</p>';
+
+  /* Matriu sexe × categoria */
+  const matrix = data.matrix || {};
+  const activeSexe = SEXE_ORDER.filter(s => byGenere[s])
+    .concat(Object.keys(byGenere).filter(s => !SEXE_ORDER.includes(s) && s !== '—' && byGenere[s]));
+  const activeCat  = CAT_ORDER.filter(c => byCat[c])
+    .concat(Object.keys(byCat).filter(c => !CAT_ORDER.includes(c) && c !== '—' && byCat[c]));
+
+  if (activeSexe.length && activeCat.length) {
+    const maxCell = Math.max(...activeSexe.flatMap(s =>
+      activeCat.map(c => (matrix[s] && matrix[s][c]) || 0)
+    ), 1);
+
+    let rows = activeSexe.map(s => {
+      const cells = activeCat.map(c => {
+        const n   = (matrix[s] && matrix[s][c]) || 0;
+        const w   = Math.round(n / maxCell * 100);
+        const col = C_CAT[c] || '#888';
+        return `<td ${n===0?'class="zero"':''}>
+          ${n}
+          <div class="cell-bar" style="width:${w}%;background:${col};max-width:60px"></div>
+        </td>`;
+      }).join('');
+      const rowTotal = activeCat.reduce((a,c) => a + ((matrix[s] && matrix[s][c]) || 0), 0);
+      return `<tr>
+        <td class="row-h">${s}</td>
+        ${cells}
+        <td class="total-col">${rowTotal}</td>
+      </tr>`;
+    }).join('');
+
+    // Fila totals
+    const totalCells = activeCat.map(c => `<td class="total-col">${byCat[c] || 0}</td>`).join('');
+
+    document.getElementById('matrix-wrap').innerHTML = `
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th class="row-h">Sexe \\ Categoria</th>
+            ${activeCat.map(c => `<th>${c}<br><small style="color:#666;font-weight:400">${AGE_RANGE[c]||''}</small></th>`).join('')}
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+          <tr class="total-row">
+            <td class="row-h">Total</td>
+            ${totalCells}
+            <td class="total-col" style="color:#fff">${total}</td>
+          </tr>
+        </tbody>
+      </table>`;
+  } else {
+    document.getElementById('matrix-wrap').innerHTML =
+      '<p style="color:#666;font-size:.9rem;padding:8px 0">Sense dades encara</p>';
+  }
+
+  /* Equips */
+  const equips = data.equipsList || [];
+  document.getElementById('equips-list').innerHTML = equips.length
+    ? equips.map((e,i) => `
+        <div class="eq-item">
+          <div class="eq-rank">${i+1}</div>
+          <div class="eq-nom">${e.nom}</div>
+          <div class="eq-badge">${e.count}</div>
+        </div>`).join('')
+    : '<p style="color:#666;font-size:.9rem;padding:8px 0">Sense dades encara</p>';
+
+  clearTimeout(refreshT);
+  refreshT = setTimeout(loadStats, 60000);
+}
+
+function animateCount(id, target) {
+  const el = document.getElementById(id);
+  const start = parseInt(el.textContent) || 0;
+  const t0 = performance.now();
+  const run = now => {
+    const t = Math.min((now-t0)/900, 1);
+    el.textContent = Math.round(start + (target-start) * (1-Math.pow(1-t,3)));
+    if (t < 1) requestAnimationFrame(run);
+  };
+  requestAnimationFrame(run);
+}
+</script>
+</body>
+</html>
