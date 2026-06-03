@@ -19,19 +19,64 @@ const FOLDER_ID  = '1OJDQaOfZmHulz8AznnwDcyNPLWG-MPuM';
 const EMAIL_DEST = 'voluntarisgrupbarna@gmail.com';
 // ─────────────────────────────────────────────────────────────────────────────
 
-// GET: stats (JSONP) o redirecció a la landing
+// GET: stats / list (JSONP) o redirecció a la landing
 function doGet(e) {
-  if (e && e.parameter && e.parameter.action === 'stats') {
-    const stats    = _getStats();
-    const callback = e.parameter.callback || 'handleStats';
+  const action   = e && e.parameter && e.parameter.action;
+  const callback = (e && e.parameter && e.parameter.callback) || 'handleData';
+
+  if (action === 'stats') {
+    const data = _getStats();
     return ContentService
-      .createTextOutput(callback + '(' + JSON.stringify(stats) + ')')
+      .createTextOutput(callback + '(' + JSON.stringify(data) + ')')
       .setMimeType(ContentService.MimeType.JAVASCRIPT);
   }
+
+  if (action === 'list') {
+    const data = _getList();
+    return ContentService
+      .createTextOutput(callback + '(' + JSON.stringify(data) + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+
   return HtmlService.createHtmlOutput(
     '<meta http-equiv="refresh" content="0;url=https://cistella.cbgrupbarna.info">' +
     '<p>Redirigint...</p>'
   );
+}
+
+// Retorna llista individual d'inscrits per a check-in / impressió
+function _getList() {
+  const ss    = SpreadsheetApp.openById(SHEET_ID);
+  const sheet = ss.getSheetByName('Inscripcions Diada');
+  if (!sheet) return { inscrits: [], updatedAt: '' };
+
+  const data = sheet.getDataRange().getValues();
+  const rows = data.slice(1).filter(r => r[1]);
+
+  const inscrits = rows.map((row, i) => ({
+    num:       i + 1,
+    nom:       (row[1] || '').toString().trim(),
+    talla:     (row[4] || '—').toString().trim(),
+    equip:     (row[5] || '—').toString().trim(),
+    categoria: (row[6] || '—').toString().trim(),
+    genere:    (row[7] || '—').toString().trim()
+  }));
+
+  // Ordenar: categoria → genere → nom
+  const CAT_ORD = { 'Escoleta': 0, 'Premini': 1, 'Mini': 2 };
+  inscrits.sort((a, b) => {
+    const ca = CAT_ORD[a.categoria] ?? 9;
+    const cb = CAT_ORD[b.categoria] ?? 9;
+    if (ca !== cb) return ca - cb;
+    if (a.genere !== b.genere) return a.genere.localeCompare(b.genere);
+    return a.nom.localeCompare(b.nom);
+  });
+
+  return {
+    inscrits,
+    total: inscrits.length,
+    updatedAt: Utilities.formatDate(new Date(), 'Europe/Madrid', 'dd/MM/yyyy HH:mm')
+  };
 }
 
 function _getStats() {

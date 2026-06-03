@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Llista Check-in · 2a Diada Cistella Petita · 13 Juny 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── SCREEN ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#f4f4f4;color:#111;font-family:'Barlow',sans-serif;font-size:14px}
+
+.screen-header{background:#CC0000;color:#fff;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.screen-header h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;text-transform:uppercase;letter-spacing:.04em}
+.screen-header p{font-size:.82rem;opacity:.85;margin-top:2px}
+.screen-actions{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);border-radius:7px;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;cursor:pointer;text-decoration:none;transition:background .15s}
+.btn:hover{background:rgba(255,255,255,.3)}
+.btn-print{background:#fff;color:#CC0000;border-color:#fff}
+.btn-print:hover{background:#f0f0f0}
+
+.meta-bar{background:#fff;border-bottom:2px solid #eee;padding:10px 24px;display:flex;align-items:center;gap:20px;font-size:.8rem;color:#666;flex-wrap:wrap}
+.meta-bar strong{color:#111}
+.meta-kpi{display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:6px;background:#f9f9f9;border:1px solid #e0e0e0}
+.meta-kpi .k{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;color:#CC0000}
+.meta-kpi .l{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#666}
+
+#loading-msg{text-align:center;padding:60px 20px;color:#999;font-size:1rem}
+.spinner{width:36px;height:36px;border:3px solid #eee;border-top-color:#CC0000;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.section-header{background:#fff;border-left:5px solid #CC0000;margin:18px 16px 0;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.section-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.15rem;text-transform:uppercase;letter-spacing:.06em}
+.section-badge{background:#CC0000;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;padding:2px 10px;border-radius:99px}
+
+table.checkin{width:100%;border-collapse:collapse;margin:0 0 24px}
+table.checkin th{background:#222;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;padding:8px 12px;text-align:left}
+table.checkin th.center{text-align:center}
+table.checkin td{padding:9px 12px;border-bottom:1px solid #e8e8e8;vertical-align:middle}
+table.checkin tr:nth-child(even) td{background:#fafafa}
+table.checkin tr:hover td{background:#fff3f3}
+.num{color:#999;font-size:.82rem;width:32px}
+.nom{font-weight:600;font-size:.95rem}
+.tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em}
+.tag-m{background:#dbeafe;color:#1d4ed8}
+.tag-f{background:#fce7f3;color:#be185d}
+.tag-x{background:#fef3c7;color:#92400e}
+.tag-cat-escoleta{background:#ede9fe;color:#6d28d9}
+.tag-cat-premini{background:#fee2e2;color:#991b1b}
+.tag-cat-mini{background:#fef9c3;color:#854d0e}
+.talla{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-align:center}
+.checkbox-cell{text-align:center;width:40px}
+.checkbox{width:20px;height:20px;border:2px solid #ccc;border-radius:4px;display:inline-block;cursor:pointer;position:relative;transition:all .15s}
+.checkbox.checked{background:#16a34a;border-color:#16a34a}
+.checkbox.checked::after{content:'✓';color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+
+.footer-bar{text-align:center;padding:24px;color:#aaa;font-size:.78rem;border-top:1px solid #e0e0e0;margin-top:8px}
+
+/* ── PRINT ── */
+@media print {
+  body{background:#fff;font-size:11px}
+  .screen-header{background:#CC0000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:8px 16px}
+  .screen-actions{display:none!important}
+  .meta-bar{padding:6px 16px;border-bottom:1px solid #ccc}
+  .section-header{margin:12px 0 0;padding:6px 12px;break-inside:avoid}
+  table.checkin th{padding:5px 8px;background:#222!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  table.checkin td{padding:6px 8px}
+  table.checkin tr:nth-child(even) td{background:#f5f5f5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tag{padding:1px 5px;font-size:.7rem}
+  .checkbox{width:16px;height:16px;border:1.5px solid #999}
+  .checkbox.checked{background:#16a34a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .footer-bar{padding:10px;font-size:.7rem}
+  /* No trencar taules */
+  table{page-break-inside:auto}
+  tr{page-break-inside:avoid;page-break-after:auto}
+  .section-header{page-break-after:avoid}
+  @page{margin:1.2cm 1.5cm;size:A4 portrait}
+}
+</style>
+</head>
+<body>
+
+<div class="screen-header">
+  <div>
+    <h1>🏀 Llista Check-in · 2a Diada Cistella Petita al Barna</h1>
+    <p>13 Juny 2026 · La Nau del Clot · 9:00–14:00h</p>
+  </div>
+  <div class="screen-actions">
+    <a href="dashboard.html" class="btn">← Dashboard</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+  </div>
+</div>
+
+<div class="meta-bar" id="meta-bar">
+  <div class="meta-kpi"><span class="k" id="meta-total">—</span><span class="l">Inscrits</span></div>
+  <div class="meta-kpi"><span class="k" id="meta-escoleta">—</span><span class="l">Escoleta</span></div>
+  <div class="meta-kpi"><span class="k" id="meta-premini">—</span><span class="l">Premini</span></div>
+  <div class="meta-kpi"><span class="k" id="meta-mini">—</span><span class="l">Mini</span></div>
+  <span style="margin-left:auto;font-size:.75rem" id="meta-time">Carregant…</span>
+</div>
+
+<div id="loading-msg">
+  <div class="spinner"></div>
+  <p>Carregant llista d'inscrits…</p>
+</div>
+
+<div id="content" style="display:none"></div>
+
+<div class="footer-bar" id="footer-bar" style="display:none">
+  Llista generada el <span id="footer-time"></span> · CB Grup Barna · voluntarisgrupbarna@gmail.com
+  <span style="margin-left:16px;color:#ccc">Marca ✓ a cada jugador/a quan faci check-in i rebi la samarreta</span>
+</div>
+
+<script>
+const CAT_ORDER = ['Escoleta','Premini','Mini'];
+const CAT_COLORS = {
+  'Escoleta': 'tag-cat-escoleta',
+  'Premini':  'tag-cat-premini',
+  'Mini':     'tag-cat-mini'
+};
+const SEXE_COLORS = {
+  'Masculí': 'tag-m',
+  'Femení':  'tag-f',
+  'Mixt':    'tag-x'
+};
+
+// Estat check-in (localStorage, funciona offline el dia de la Diada)
+function getChecked() {
+  try { return JSON.parse(localStorage.getItem('checkin_diada_2026') || '{}'); } catch { return {}; }
+}
+function setChecked(id, val) {
+  const s = getChecked(); s[id] = val;
+  localStorage.setItem('checkin_diada_2026', JSON.stringify(s));
+}
+function clearAll() {
+  if (!confirm('Esborrar tots els check-ins? (No es pot desfer)')) return;
+  localStorage.removeItem('checkin_diada_2026');
+  location.reload();
+}
+
+async function load() {
+  try {
+    const res = await fetch('/api/list');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    render(data);
+  } catch (err) {
+    document.getElementById('loading-msg').innerHTML =
+      `<p style="color:#CC0000;padding:40px 20px">⚠️ Error carregant dades: ${err.message}<br>
+      <small>Comprova la connexió o obre el <a href="https://docs.google.com/spreadsheets/d/1LFuJCTbQXA7jpZEcflapG6ZpIecjNtxskxeJdsVGk-U" target="_blank" style="color:#CC0000">Google Sheet</a> directament.</small></p>`;
+  }
+}
+
+function render(data) {
+  document.getElementById('loading-msg').style.display = 'none';
+
+  const inscrits = data.inscrits || [];
+  const total    = inscrits.length;
+
+  // Meta KPIs
+  document.getElementById('meta-total').textContent    = total;
+  document.getElementById('meta-escoleta').textContent = inscrits.filter(i => i.categoria === 'Escoleta').length;
+  document.getElementById('meta-premini').textContent  = inscrits.filter(i => i.categoria === 'Premini').length;
+  document.getElementById('meta-mini').textContent     = inscrits.filter(i => i.categoria === 'Mini').length;
+  document.getElementById('meta-time').textContent     = 'Actualitzat: ' + (data.updatedAt || '—');
+
+  const checked = getChecked();
+
+  // Agrupar per categoria
+  const groups = {};
+  CAT_ORDER.forEach(c => { groups[c] = []; });
+  inscrits.forEach(i => {
+    const cat = CAT_ORDER.includes(i.categoria) ? i.categoria : 'Altres';
+    if (!groups[cat]) groups[cat] = [];
+    groups[cat].push(i);
+  });
+
+  let html = '';
+  let globalNum = 0;
+  Object.entries(groups).forEach(([cat, jugadors]) => {
+    if (!jugadors.length) return;
+    const checkedCat = jugadors.filter(j => checked[j.nom + j.categoria]).length;
+    html += `
+      <div class="section-header">
+        <h2>${cat} <small style="font-size:.8rem;color:#999;font-weight:400">${AGE_RANGE[cat] || ''}</small></h2>
+        <span class="section-badge">${jugadors.length} jugadors</span>
+        <span style="margin-left:auto;font-size:.8rem;color:#666"><strong style="color:#16a34a">${checkedCat}</strong> / ${jugadors.length} check-in</span>
+      </div>
+      <table class="checkin">
+        <thead>
+          <tr>
+            <th style="width:36px">#</th>
+            <th>Nom jugador/a</th>
+            <th class="center">Sexe</th>
+            <th>Equip</th>
+            <th class="center">Talla</th>
+            <th class="center" style="width:56px">✓ Arribat</th>
+            <th class="center" style="width:64px">👕 Entregada</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${jugadors.map((j, idx) => {
+            globalNum++;
+            const id = j.nom + j.categoria;
+            const isChecked = !!checked[id];
+            return `<tr>
+              <td class="num">${globalNum}</td>
+              <td class="nom">${j.nom}</td>
+              <td class="center"><span class="tag ${SEXE_COLORS[j.genere] || ''}">${j.genere}</span></td>
+              <td style="font-size:.85rem;color:#555">${j.equip}</td>
+              <td class="talla">${j.talla}</td>
+              <td class="checkbox-cell">
+                <div class="checkbox ${isChecked ? 'checked' : ''}" onclick="toggle('${id.replace(/'/g,"\\'")}', this)"></div>
+              </td>
+              <td class="checkbox-cell">
+                <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+              </td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>`;
+  });
+
+  document.getElementById('content').innerHTML = html;
+  document.getElementById('content').style.display = 'block';
+  document.getElementById('footer-bar').style.display = 'block';
+  document.getElementById('footer-time').textContent = data.updatedAt || new Date().toLocaleString('ca-ES');
+}
+
+const AGE_RANGE = { 'Escoleta': '5–6 anys', 'Premini': '7–8 anys', 'Mini': '9–10 anys' };
+
+function toggle(id, el) {
+  const val = !el.classList.contains('checked');
+  el.classList.toggle('checked', val);
+  setChecked(id, val);
+  // Actualitzar comptador de la secció
+  const rows = document.querySelectorAll('.checkbox.checked');
+}
+
+load();
+</script>
+</body>
+</html>
