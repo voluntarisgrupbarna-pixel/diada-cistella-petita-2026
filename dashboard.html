@@ -3,166 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Inscripcions · 2a Diada Cistella Petita al Barna</title>
+<title>Dashboard · 2a Diada Cistella Petita al Barna</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --red:   #CC0000;
-  --gold:  #D4A017;
-  --dark:  #1a1a1a;
-  --card:  #242424;
-  --bord:  #333;
-  --cream: #f5f0e8;
-  --muted: #999;
-  --green: #27ae60;
+:root{
+  --red:#CC0000;--gold:#D4A017;--dark:#111;--bg:#161616;--card:#1e1e1e;
+  --card2:#252525;--bord:#2e2e2e;--cream:#f5f0e8;--muted:#777;
+  --blue:#4a90d9;--pink:#e83e8c;--purple:#9b59b6;--green:#27ae60;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--dark);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh}
+body{background:var(--bg);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden}
 
 /* ── Rainbow ── */
-.rainbow{height:6px;background:linear-gradient(90deg,#FF0000 0%,#FF7F00 16.6%,#FFFF00 33.3%,#00CC00 50%,#0000FF 66.6%,#8B00FF 83.3%,#FF69B4 100%)}
+.rainbow{height:5px;background:linear-gradient(90deg,#FF0000,#FF7F00,#FFED00,#00CC00,#0000FF,#8B00FF,#FF69B4)}
 
-/* ── PIN SCREEN ── */
-#pin-screen{
-  position:fixed;inset:0;background:var(--dark);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  z-index:999;gap:0;
-}
-.pin-rainbow{height:5px;width:100%;position:absolute;top:0;background:linear-gradient(90deg,#FF0000 0%,#FF7F00 16.6%,#FFFF00 33.3%,#00CC00 50%,#0000FF 66.6%,#8B00FF 83.3%,#FF69B4 100%)}
-.pin-logo{width:72px;height:72px;object-fit:contain;margin-bottom:20px;opacity:.9}
-.pin-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.4rem,5vw,2rem);text-transform:uppercase;letter-spacing:.05em;text-align:center;line-height:1.1;margin-bottom:6px}
-.pin-sub{font-size:.85rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;text-align:center;margin-bottom:32px}
-.pin-box{background:#1e1e1e;border:2px solid var(--bord);border-radius:16px;padding:32px 28px;width:min(340px,90vw)}
-.pin-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;text-align:center}
-.pin-dots{display:flex;justify-content:center;gap:14px;margin-bottom:24px}
-.pin-dot{width:16px;height:16px;border-radius:50%;background:var(--bord);transition:background .2s}
+/* ── PIN ── */
+#pin-screen{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
+.pin-logo{width:68px;height:68px;object-fit:contain;margin-bottom:18px;opacity:.9}
+.pin-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.3rem,5vw,1.9rem);text-transform:uppercase;letter-spacing:.05em;text-align:center;line-height:1.1;margin-bottom:5px}
+.pin-sub{font-size:.8rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;text-align:center;margin-bottom:28px}
+.pin-box{background:#1a1a1a;border:1.5px solid var(--bord);border-radius:16px;padding:28px 24px;width:min(320px,90vw)}
+.pin-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;text-align:center}
+.pin-dots{display:flex;justify-content:center;gap:12px;margin-bottom:22px}
+.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--bord);transition:background .2s}
 .pin-dot.filled{background:var(--red)}
-.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.pin-btn{background:#2a2a2a;border:1px solid #3a3a3a;border-radius:10px;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;padding:14px;cursor:pointer;text-align:center;transition:background .15s,border-color .15s;user-select:none}
-.pin-btn:hover{background:#333;border-color:#555}
-.pin-btn:active{background:var(--red);border-color:var(--red)}
-.pin-btn.del{font-size:1rem;color:var(--muted)}
+.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.pin-btn{background:#222;border:1px solid #333;border-radius:9px;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;padding:13px;cursor:pointer;text-align:center;transition:background .12s;user-select:none}
+.pin-btn:hover{background:#2e2e2e}
+.pin-btn:active{background:var(--red)}
+.pin-btn.del{font-size:.9rem;color:var(--muted)}
 .pin-btn.zero{grid-column:2}
-.pin-error{text-align:center;color:var(--red);font-size:.85rem;margin-top:12px;min-height:20px;font-weight:600}
+.pin-error{text-align:center;color:var(--red);font-size:.82rem;margin-top:10px;min-height:18px;font-weight:600}
 .pin-shake{animation:shake .4s ease}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
 
 /* ── HEADER ── */
-header{background:#111;border-bottom:3px solid var(--red);padding:18px 24px 14px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-header img{width:48px;height:48px;object-fit:contain}
-.htext h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1.1rem,3vw,1.7rem);text-transform:uppercase;letter-spacing:.04em;line-height:1.1;color:#fff}
-.htext p{font-size:.8rem;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
-.hmeta{margin-left:auto;text-align:right;font-size:.78rem;color:var(--muted);line-height:1.6}
+header{background:#0d0d0d;border-bottom:2px solid var(--red);padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
+header img{width:40px;height:40px;object-fit:contain}
+.htext h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(1rem,2.5vw,1.5rem);text-transform:uppercase;letter-spacing:.04em;line-height:1.1;color:#fff}
+.htext p{font-size:.72rem;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.hmeta{margin-left:auto;text-align:right;font-size:.72rem;color:var(--muted);line-height:1.6}
 .hmeta span{color:var(--cream);font-weight:600}
-.stripe{height:4px;background:var(--red)}
+.hactions{display:flex;gap:8px;align-items:center}
+.hbtn{display:inline-flex;align-items:center;gap:6px;background:#222;border:1px solid var(--bord);border-radius:7px;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 13px;cursor:pointer;text-decoration:none;transition:background .12s;white-space:nowrap}
+.hbtn:hover{background:#2e2e2e}
+.hbtn-red{background:var(--red);border-color:var(--red);color:#fff}
+.hbtn-red:hover{background:#aa0000;border-color:#aa0000}
 
-/* ── MAIN ── */
-main{max-width:1100px;margin:0 auto;padding:26px 16px 48px}
-
-/* ── KPI HERO ── */
-.kpi-hero{
-  background:linear-gradient(135deg,#1e1e1e,#2a1a1a);
-  border:2px solid var(--red);border-radius:16px;padding:28px 24px;margin-bottom:24px;
-  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
-  position:relative;overflow:hidden;
-}
-.kpi-hero::before{content:'🏀';position:absolute;font-size:140px;opacity:.04;right:-16px;top:-24px;line-height:1}
-.kpi-num-block{text-align:center;min-width:120px}
-.kpi-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(4rem,12vw,7rem);line-height:1;color:var(--red)}
-.kpi-of{font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
-.kpi-progress-block{flex:1;min-width:220px}
-.kpi-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(.9rem,2vw,1.15rem);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
-.progress-track{height:18px;background:#333;border-radius:99px;overflow:hidden;margin-bottom:8px}
-.progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--red),#ff4444);transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-.progress-labels{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
-.progress-labels .pct{color:var(--gold);font-weight:700;font-size:.9rem}
-.kpi-sub{font-size:.8rem;color:var(--muted);margin-top:8px}
-
-/* ── GRID ── */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px}
-@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
-
-/* ── CARD ── */
-.card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:20px}
-.ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.ctitle::after{content:'';flex:1;height:1px;background:var(--bord);margin-left:4px}
-.ctitle .sub{font-size:.72rem;color:var(--muted);font-weight:400;letter-spacing:.05em;text-transform:none;white-space:nowrap}
-
-/* ── STAT ROWS (horizontal bars) ── */
-.stat-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.stat-row:last-child{margin-bottom:0}
-.stat-lbl{min-width:90px;font-size:.9rem;line-height:1.2}
-.stat-lbl small{display:block;font-size:.72rem;color:var(--muted);margin-top:1px}
-.stat-bar-w{flex:1;height:12px;background:#333;border-radius:99px;overflow:hidden}
-.stat-bar{height:100%;border-radius:99px;transition:width 1s ease}
-.stat-n{min-width:28px;text-align:right;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem}
-.stat-pct{min-width:40px;text-align:right;font-size:.78rem;color:var(--muted)}
-
-/* ── MINI KPIs (sexe/categoria) ── */
-.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.kpi-chip{flex:1;min-width:80px;background:#1e1e1e;border-radius:10px;border:1px solid var(--bord);padding:12px 10px;text-align:center}
-.kpi-chip .cn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;line-height:1}
-.kpi-chip .cl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
-
-/* ── MATRIU ── */
-.matrix-wrap{overflow-x:auto}
-table.matrix{width:100%;border-collapse:collapse;font-size:.88rem}
-table.matrix th,table.matrix td{padding:9px 12px;text-align:center;border:1px solid var(--bord)}
-table.matrix th{font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:#1e1e1e;color:var(--gold);font-size:.85rem}
-table.matrix th.row-h{text-align:left;color:var(--cream)}
-table.matrix td.row-h{text-align:left;font-weight:600;color:var(--cream);background:#1e1e1e}
-table.matrix td{color:var(--cream)}
-table.matrix tr:hover td{background:rgba(255,255,255,.03)}
-table.matrix td.zero{color:#444}
-table.matrix .total-col{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;background:#1e1e1e!important}
-table.matrix .total-row td{font-family:'Barlow Condensed',sans-serif;font-weight:700;background:#2a2a2a!important;color:var(--gold)}
-table.matrix .total-row td.row-h{color:var(--cream)}
-.cell-bar{height:4px;border-radius:99px;margin:4px auto 0;transition:width .8s ease}
-
-/* ── EQUIPS ── */
-.eq-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bord)}
-.eq-item:last-child{border-bottom:none}
-.eq-rank{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--muted);min-width:22px}
-.eq-nom{flex:1;font-size:.88rem}
-.eq-badge{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;padding:2px 10px;border-radius:99px;min-width:34px;text-align:center}
+/* ── LAYOUT ── */
+.app-body{display:flex;min-height:calc(100vh - 62px)}
+main{flex:1;padding:20px 20px 48px;max-width:1200px;margin:0 auto;width:100%}
 
 /* ── LOADING ── */
-#loading{text-align:center;padding:60px 20px;color:var(--muted)}
-.spinner{width:44px;height:44px;border:4px solid var(--bord);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
+#loading{text-align:center;padding:80px 20px;color:var(--muted)}
+.spinner{width:40px;height:40px;border:3px solid var(--bord);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.action-bar{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;margin-bottom:4px}
-.action-btn{display:inline-flex;align-items:center;gap:8px;background:#2a2a2a;border:1px solid var(--bord);border-radius:8px;color:var(--cream);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;padding:10px 18px;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s}
-.action-btn:hover{background:#333;border-color:#555}
-.action-btn--print{background:var(--red);border-color:var(--red);color:#fff}
-.action-btn--print:hover{background:#aa0000;border-color:#aa0000}
-.refresh-info{text-align:center;font-size:.78rem;color:var(--muted);margin-top:20px;padding-top:16px;border-top:1px solid var(--bord)}
-.refresh-info a{color:var(--gold);text-decoration:none}
-.refresh-info a:hover{text-decoration:underline}
+/* ── KPI HERO ROW ── */
+.kpi-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+.kpi-card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:18px 20px;cursor:pointer;transition:border-color .2s,background .2s;position:relative;overflow:hidden}
+.kpi-card:hover{border-color:#555;background:var(--card2)}
+.kpi-card.active{border-color:var(--gold)!important;background:#1f1a0a}
+.kpi-card--hero{grid-column:span 2;background:linear-gradient(135deg,#1e1212,#1a1a2e);border-color:var(--red)}
+.kpi-card--hero:hover{border-color:#ff3333}
+.kpi-card--hero::before{content:'🏀';position:absolute;font-size:110px;opacity:.04;right:-10px;top:-18px;pointer-events:none}
+.kpi-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,8vw,4.5rem);line-height:1;color:var(--red)}
+.kpi-card--hero .kpi-n{font-size:clamp(3.5rem,10vw,6rem)}
+.kpi-of{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.kpi-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--cream)}
+.kpi-sub{font-size:.72rem;color:var(--muted);margin-top:6px}
+.kpi-hint{font-size:.68rem;color:var(--muted);margin-top:8px;opacity:.6}
+.kpi-hint::before{content:'↗ '}
+.progress-track{height:10px;background:#333;border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--red),#ff5555);transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.progress-labels{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted)}
+.pct-lbl{color:var(--gold);font-weight:700}
+
+/* ── GRID 2 / 3 ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:900px){.kpi-row{grid-template-columns:1fr 1fr}.kpi-card--hero{grid-column:span 2}}
+@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+@media(max-width:500px){.kpi-row{grid-template-columns:1fr}}
+
+/* ── CARD ── */
+.card{background:var(--card);border:1px solid var(--bord);border-radius:12px;padding:18px;margin-bottom:14px}
+.card.last{margin-bottom:0}
+.ctitle{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ctitle::after{content:'';flex:1;height:1px;background:var(--bord);margin-left:4px}
+.ctitle .csub{font-size:.68rem;color:var(--muted);font-weight:400;letter-spacing:.04em;text-transform:none}
+
+/* ── STAT ROW (clickable) ── */
+.stat-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;padding:6px 8px;border-radius:8px;transition:background .15s;border:1px solid transparent}
+.stat-row:last-child{margin-bottom:0}
+.stat-row:hover{background:rgba(255,255,255,.04);border-color:var(--bord)}
+.stat-row.active{background:rgba(212,160,23,.08);border-color:var(--gold)}
+.slbl{min-width:90px;font-size:.88rem;line-height:1.2}
+.slbl small{display:block;font-size:.68rem;color:var(--muted);margin-top:1px}
+.sbar-w{flex:1;height:10px;background:#2a2a2a;border-radius:99px;overflow:hidden}
+.sbar{height:100%;border-radius:99px;transition:width .9s ease}
+.sn{min-width:26px;text-align:right;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem}
+.sp{min-width:36px;text-align:right;font-size:.72rem;color:var(--muted)}
+
+/* ── MATRIX ── */
+.matrix-wrap{overflow-x:auto}
+table.mx{width:100%;border-collapse:collapse;font-size:.84rem}
+table.mx th,table.mx td{padding:8px 12px;border:1px solid var(--bord)}
+table.mx th{text-align:center;background:#141414;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;color:var(--gold);font-size:.78rem;letter-spacing:.06em}
+table.mx th.lh{text-align:left;color:var(--cream)}
+table.mx td{text-align:center;color:var(--cream)}
+table.mx td.lh{text-align:left;background:#141414;font-weight:600;font-size:.84rem}
+table.mx td.zero{color:#333}
+table.mx td.clickable{cursor:pointer;transition:background .15s}
+table.mx td.clickable:hover{background:rgba(212,160,23,.12)}
+table.mx td.clickable.active{background:rgba(212,160,23,.2)!important;color:var(--gold)}
+table.mx tr.total-row td{background:#1a1a1a;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--gold)}
+table.mx tr.total-row td.lh{color:var(--cream)}
+table.mx .tot-col{background:#141414!important;font-family:'Barlow Condensed',sans-serif;font-weight:700}
+.cbar{height:3px;border-radius:99px;margin:4px auto 0;max-width:54px}
+
+/* ── TALLES GRID ── */
+.talles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+.talla-chip{background:#1a1a1a;border:1px solid var(--bord);border-radius:9px;padding:10px 6px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.talla-chip:hover{border-color:#555;background:var(--card2)}
+.talla-chip.active{border-color:var(--gold);background:#1f1a0a}
+.talla-chip .tn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;line-height:1}
+.talla-chip .tl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+
+/* ── EQUIPS ── */
+.eq-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-bottom:1px solid var(--bord);cursor:pointer;border-radius:7px;transition:background .12s;margin:-1px -2px;border:1px solid transparent}
+.eq-item:last-child{border-bottom:1px solid transparent}
+.eq-item:hover{background:rgba(255,255,255,.04);border-color:var(--bord)}
+.eq-item.active{background:rgba(212,160,23,.08);border-color:var(--gold)}
+.eq-r{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--muted);min-width:20px;font-size:.9rem}
+.eq-n{flex:1;font-size:.85rem}
+.eq-b{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;padding:2px 9px;border-radius:99px;min-width:28px;text-align:center}
+
+/* ── DETAIL DRAWER ── */
+#drawer{
+  position:fixed;top:0;right:-500px;width:min(480px,100vw);height:100vh;
+  background:#111;border-left:2px solid var(--red);
+  display:flex;flex-direction:column;z-index:500;
+  transition:right .3s cubic-bezier(.4,0,.2,1);
+  box-shadow:-8px 0 40px rgba(0,0,0,.6);
+}
+#drawer.open{right:0}
+.drawer-header{background:#0d0d0d;border-bottom:1px solid var(--bord);padding:14px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.drawer-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;text-transform:uppercase;letter-spacing:.06em;flex:1;color:#fff}
+.drawer-count{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;padding:2px 10px;border-radius:99px}
+.drawer-close{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:5px;transition:color .15s}
+.drawer-close:hover{color:var(--cream)}
+.drawer-body{flex:1;overflow-y:auto;padding:16px}
+.drawer-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.9rem}
+
+/* Taula del drawer */
+.dtable{width:100%;border-collapse:collapse;font-size:.83rem}
+.dtable th{padding:7px 10px;text-align:left;border-bottom:2px solid var(--bord);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);background:#0d0d0d;position:sticky;top:0}
+.dtable td{padding:8px 10px;border-bottom:1px solid #1e1e1e;vertical-align:middle}
+.dtable tr:hover td{background:rgba(255,255,255,.03)}
+.tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;padding:2px 7px;border-radius:4px;text-transform:uppercase}
+.tag-m{background:#1a2e4a;color:#4a90d9}
+.tag-f{background:#3a1a2a;color:#e83e8c}
+.tag-x{background:#2e2a10;color:#D4A017}
+.tag-cat-escoleta{background:#2a1a3e;color:#9b59b6}
+.tag-cat-premini{background:#3a1010;color:#CC0000}
+.tag-cat-mini{background:#2e2a10;color:#D4A017}
+.d-nom{font-weight:600;font-size:.88rem}
+.d-equip{font-size:.75rem;color:var(--muted)}
+.d-talla{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem}
+
+/* Overlay */
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:499;display:none;backdrop-filter:blur(2px)}
+#overlay.show{display:block}
+
+/* ── FOOTER ── */
+.footer{text-align:center;font-size:.72rem;color:#444;margin-top:24px;padding-top:14px;border-top:1px solid var(--bord)}
+.footer a{color:var(--gold);text-decoration:none}
 
 @media(max-width:600px){
-  header{padding:12px 14px}
-  .kpi-hero{flex-direction:column;gap:16px}
-  .kpi-num-block{min-width:unset}
+  header{padding:10px 14px}
+  main{padding:12px 12px 40px}
+  .kpi-card--hero{grid-column:span 1}
+  #drawer{width:100vw}
 }
 </style>
 </head>
 <body>
 
-<!-- PIN SCREEN -->
+<!-- PIN -->
 <div id="pin-screen">
-  <div class="pin-rainbow"></div>
+  <div class="rainbow" style="position:absolute;top:0;width:100%"></div>
   <img class="pin-logo" src="escut.png" alt="CB Grup Barna" onerror="this.style.display='none'">
   <div class="pin-title">Diada Cistella Petita</div>
-  <div class="pin-sub">Dashboard d'inscripcions · Accés restringit</div>
+  <div class="pin-sub">Dashboard · Accés restringit</div>
   <div class="pin-box">
     <div class="pin-label">Introdueix el PIN</div>
     <div class="pin-dots" id="pin-dots">
-      <div class="pin-dot" id="d0"></div>
-      <div class="pin-dot" id="d1"></div>
-      <div class="pin-dot" id="d2"></div>
-      <div class="pin-dot" id="d3"></div>
+      <div class="pin-dot" id="d0"></div><div class="pin-dot" id="d1"></div>
+      <div class="pin-dot" id="d2"></div><div class="pin-dot" id="d3"></div>
     </div>
     <div class="pin-keypad">
       <button class="pin-btn" onclick="addDigit('1')">1</button>
@@ -181,7 +219,7 @@ table.matrix .total-row td.row-h{color:var(--cream)}
   </div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- APP -->
 <div id="app" style="display:none">
   <div class="rainbow"></div>
 
@@ -189,322 +227,349 @@ table.matrix .total-row td.row-h{color:var(--cream)}
     <img src="escut.png" alt="CB Grup Barna" onerror="this.style.display='none'">
     <div class="htext">
       <h1>2a Diada Cistella Petita al Barna</h1>
-      <p>Dashboard d'inscripcions · 13 Juny 2026 · La Nau del Clot</p>
+      <p>Dashboard · 13 Juny 2026 · La Nau del Clot</p>
     </div>
-    <div class="hmeta" id="meta-info">Actualitzant…</div>
+    <div class="hactions">
+      <button class="hbtn" onclick="loadAll()">↻</button>
+      <a class="hbtn hbtn-red" href="print.html" target="_blank">🖨️ Imprimir</a>
+    </div>
+    <div class="hmeta" id="meta-info">—</div>
   </header>
-  <div class="stripe"></div>
 
-  <main>
-    <div id="loading">
-      <div class="spinner"></div>
-      <p>Carregant dades…</p>
-    </div>
+  <div class="app-body">
+    <main>
+      <div id="loading"><div class="spinner"></div><p>Carregant…</p></div>
+      <div id="dashboard" style="display:none">
 
-    <div id="dashboard" style="display:none">
-
-      <!-- KPI HERO amb progrés cap a 100 -->
-      <div class="kpi-hero">
-        <div class="kpi-num-block">
-          <div class="kpi-num" id="kpi-num">0</div>
-          <div class="kpi-of">/ 100 objectiu</div>
+        <!-- KPI ROW -->
+        <div class="kpi-row" id="kpi-row">
+          <!-- generat per JS -->
         </div>
-        <div class="kpi-progress-block">
-          <div class="kpi-lbl">Inscripcions rebudes</div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+
+        <!-- SEXE + CATEGORIA -->
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">♀♂ Per sexe</div>
+            <div id="sexe-list"></div>
           </div>
-          <div class="progress-labels">
-            <span>0</span>
-            <span class="pct" id="progress-pct">0%</span>
-            <span>100</span>
+          <div class="card">
+            <div class="ctitle">🏀 Per categoria <span class="csub">/ edat</span></div>
+            <div id="cat-list"></div>
           </div>
-          <div class="kpi-sub" id="kpi-sub">—</div>
         </div>
-      </div>
 
-      <!-- Sexe + Categoria -->
-      <div class="grid2">
-
-        <!-- Per sexe -->
+        <!-- MATRIU -->
         <div class="card">
-          <div class="ctitle">♀♂ Per sexe</div>
-          <div id="sexe-list"></div>
+          <div class="ctitle">📊 Sexe × Categoria <span class="csub">clica qualsevol cel·la</span></div>
+          <div class="matrix-wrap" id="matrix-wrap"></div>
         </div>
 
-        <!-- Per categoria / edat -->
-        <div class="card">
-          <div class="ctitle">🏀 Per categoria <span class="sub">/ edat</span></div>
-          <div id="cat-list"></div>
+        <!-- TALLES + EQUIPS -->
+        <div class="grid2">
+          <div class="card">
+            <div class="ctitle">👕 Talles samarreta <span class="csub">clica per veure qui</span></div>
+            <div class="talles-grid" id="talles-grid"></div>
+          </div>
+          <div class="card last">
+            <div class="ctitle">🏆 Equips <span class="csub">clica per veure jugadors</span></div>
+            <div id="equips-list"></div>
+          </div>
         </div>
 
-      </div>
-
-      <!-- Matriu sexe × categoria -->
-      <div class="card" style="margin-bottom:18px">
-        <div class="ctitle">📊 Distribució sexe × categoria</div>
-        <div class="matrix-wrap" id="matrix-wrap"></div>
-      </div>
-
-      <!-- Talles + Equips -->
-      <div class="grid2">
-        <div class="card" style="margin-bottom:0">
-          <div class="ctitle">👕 Talles samarreta</div>
-          <div id="talles-list"></div>
-        </div>
-        <div class="card" style="margin-bottom:0">
-          <div class="ctitle">🏆 Equips participants</div>
-          <div id="equips-list"></div>
+        <div class="footer">
+          ♻ Actualitza cada 90 s &nbsp;·&nbsp;
+          <a href="https://cistella.cbgrupbarna.info" target="_blank">↗ Formulari</a>
+          &nbsp;·&nbsp;<a href="https://www.cbgrupbarna.info" target="_blank">CB Grup Barna</a>
         </div>
       </div>
+    </main>
+  </div>
+</div>
 
-      <div class="action-bar">
-        <button class="action-btn" onclick="loadStats()">↻ Actualitzar ara</button>
-        <a class="action-btn action-btn--print" href="print.html" target="_blank">🖨️ Llista per imprimir</a>
-      </div>
-
-      <div class="refresh-info">
-        ♻ S'actualitza cada 60 s &nbsp;·&nbsp;
-        <a href="https://cistella.cbgrupbarna.info" target="_blank">↗ Formulari inscripció</a>
-        &nbsp;·&nbsp;
-        <a href="https://www.cbgrupbarna.info" target="_blank">CB Grup Barna</a>
-      </div>
-    </div>
-  </main>
+<!-- DRAWER -->
+<div id="overlay" onclick="closeDrawer()"></div>
+<div id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-title" id="drawer-title">—</div>
+    <span class="drawer-count" id="drawer-count">0</span>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
 </div>
 
 <script>
-/* ── PIN ── */
-const CORRECT_PIN = '3326';
-let pinBuffer = '';
-function addDigit(d) {
-  if (pinBuffer.length >= 4) return;
-  pinBuffer += d;
-  updateDots();
-  if (pinBuffer.length === 4) checkPin();
-}
-function delDigit() {
-  pinBuffer = pinBuffer.slice(0,-1);
-  updateDots();
-  document.getElementById('pin-error').textContent = '';
-}
-function updateDots() {
-  for (let i=0;i<4;i++) document.getElementById('d'+i).classList.toggle('filled', i < pinBuffer.length);
-}
-function checkPin() {
-  if (pinBuffer === CORRECT_PIN) {
-    document.getElementById('pin-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
+/* ══════════════════════════════════════════════════
+   PIN
+══════════════════════════════════════════════════ */
+const PIN = '3326';
+let pinBuf = '';
+function addDigit(d){ if(pinBuf.length>=4) return; pinBuf+=d; updateDots(); if(pinBuf.length===4) checkPin(); }
+function delDigit(){ pinBuf=pinBuf.slice(0,-1); updateDots(); document.getElementById('pin-error').textContent=''; }
+function updateDots(){ for(let i=0;i<4;i++) document.getElementById('d'+i).classList.toggle('filled',i<pinBuf.length); }
+function checkPin(){
+  if(pinBuf===PIN){
+    document.getElementById('pin-screen').style.display='none';
+    document.getElementById('app').style.display='block';
     sessionStorage.setItem('dash_ok','1');
-    loadStats();
+    loadAll();
   } else {
-    document.getElementById('pin-error').textContent = 'PIN incorrecte. Torna a intentar-ho.';
+    document.getElementById('pin-error').textContent='PIN incorrecte';
     document.getElementById('pin-dots').classList.add('pin-shake');
-    setTimeout(() => {
-      pinBuffer = '';
-      updateDots();
-      document.getElementById('pin-dots').classList.remove('pin-shake');
-    }, 500);
+    setTimeout(()=>{ pinBuf=''; updateDots(); document.getElementById('pin-dots').classList.remove('pin-shake'); },500);
   }
 }
-document.addEventListener('keydown', e => {
-  if (document.getElementById('pin-screen').style.display === 'none') return;
-  if (e.key >= '0' && e.key <= '9') addDigit(e.key);
-  if (e.key === 'Backspace') delDigit();
+document.addEventListener('keydown', e=>{
+  if(document.getElementById('pin-screen').style.display==='none') return;
+  if(e.key>='0'&&e.key<='9') addDigit(e.key);
+  if(e.key==='Backspace') delDigit();
 });
-if (sessionStorage.getItem('dash_ok') === '1') {
-  document.getElementById('pin-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  loadStats();
+if(sessionStorage.getItem('dash_ok')==='1'){
+  document.getElementById('pin-screen').style.display='none';
+  document.getElementById('app').style.display='block';
+  loadAll();
 }
 
-/* ── COLORS ── */
-const C_SEXE = {
-  'Masculí': '#4a90d9',
-  'Femení':  '#e83e8c',
-  'Mixt':    '#D4A017',
-  '—':       '#555'
-};
-const C_CAT = {
-  'Escoleta': '#9b59b6',
-  'Premini':  '#CC0000',
-  'Mini':     '#D4A017',
-  '—':        '#555'
-};
-const AGE_RANGE = {
-  'Escoleta': '5–6 anys',
-  'Premini':  '7–8 anys',
-  'Mini':     '9–10 anys'
-};
-const CAT_ORDER    = ['Escoleta','Premini','Mini'];
-const SEXE_ORDER   = ['Masculí','Femení','Mixt'];
+/* ══════════════════════════════════════════════════
+   DATA
+══════════════════════════════════════════════════ */
+let gStats={}, gList=[], gTimer=null;
 
-let refreshT = null;
+const C_SEXE = {'Masculí':'#4a90d9','Femení':'#e83e8c','Mixt':'#D4A017'};
+const C_CAT  = {'Escoleta':'#9b59b6','Premini':'#CC0000','Mini':'#D4A017'};
+const AGE    = {'Escoleta':'5–6 anys','Premini':'7–8 anys','Mini':'9–10 anys'};
+const SEXES  = ['Masculí','Femení','Mixt'];
+const CATS   = ['Escoleta','Premini','Mini'];
+const TALLA_ORD = ['4 anys','5 anys','6 anys','7 anys','8 anys','9 anys','10 anys','11 anys','12 anys','XS','S','M','L','XL','XXL','3XL'];
 
-async function loadStats() {
+async function loadAll(){
+  clearTimeout(gTimer);
   try {
-    const res = await fetch('/api/stats');
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    render(await res.json());
-  } catch (err) {
-    console.error(err);
-    document.getElementById('loading').innerHTML =
-      '<p style="color:#CC0000;margin-top:40px">⚠️ No s\'han pogut carregar les dades.<br><small>' + err.message + '</small></p>';
+    const [sRes, lRes] = await Promise.all([fetch('/api/stats'), fetch('/api/list')]);
+    if(!sRes.ok || !lRes.ok) throw new Error('HTTP error');
+    const [stats, listData] = await Promise.all([sRes.json(), lRes.json()]);
+    gStats = stats;
+    gList  = listData.inscrits || [];
+    render();
+    document.getElementById('meta-info').innerHTML = 'Actualitzat<br><span>'+( stats.updatedAt||'—')+'</span>';
+  } catch(err){
+    document.getElementById('loading').innerHTML = '<p style="color:var(--red);margin-top:40px">⚠️ Error: '+err.message+'</p>';
+    return;
   }
+  gTimer = setTimeout(loadAll, 90000);
 }
 
-function render(data) {
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
+/* ══════════════════════════════════════════════════
+   RENDER
+══════════════════════════════════════════════════ */
+function render(){
+  document.getElementById('loading').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  renderKpis();
+  renderSexe();
+  renderCat();
+  renderMatrix();
+  renderTalles();
+  renderEquips();
+}
 
-  const total = data.total || 0;
+function renderKpis(){
+  const total = gStats.total||0;
+  const pct   = Math.min(Math.round(total/100*100),100);
+  const males = gStats.byGenere?.['Masculí']||0;
+  const females = gStats.byGenere?.['Femení']||0;
+  const premini = gStats.byCategoria?.['Premini']||0;
 
-  /* KPI + progrés */
+  document.getElementById('kpi-row').innerHTML = `
+    <!-- Hero total -->
+    <div class="kpi-card kpi-card--hero" onclick="openDrawer('Tots els inscrits', gList)" title="Veure tots">
+      <div class="kpi-lbl">Inscripcions</div>
+      <div style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap">
+        <div>
+          <div class="kpi-n" id="kpi-num">0</div>
+          <div class="kpi-of">/ 100 objectiu</div>
+        </div>
+        <div style="flex:1;min-width:140px;padding-bottom:4px">
+          <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+          <div class="progress-labels"><span>0</span><span class="pct-lbl">${pct}%</span><span>100</span></div>
+          <div class="kpi-sub">${pct<100?'Falten '+(100-total)+' per arribar a 100':'🎉 Objectiu assolit!'}</div>
+        </div>
+      </div>
+      <div class="kpi-hint">clica per veure tots els jugadors</div>
+    </div>
+
+    <!-- Masculí -->
+    <div class="kpi-card" onclick="openDrawer('Masculí', gList.filter(j=>j.genere==='Masculí'))" title="Veure Masculí">
+      <div class="kpi-lbl" style="color:#4a90d9">♂ Masculí</div>
+      <div class="kpi-n" style="color:#4a90d9">${males}</div>
+      <div class="kpi-of">${total?Math.round(males/total*100):0}% del total</div>
+      <div class="kpi-hint">clica per veure llista</div>
+    </div>
+
+    <!-- Femení -->
+    <div class="kpi-card" onclick="openDrawer('Femení', gList.filter(j=>j.genere==='Femení'))" title="Veure Femení">
+      <div class="kpi-lbl" style="color:#e83e8c">♀ Femení</div>
+      <div class="kpi-n" style="color:#e83e8c">${females}</div>
+      <div class="kpi-of">${total?Math.round(females/total*100):0}% del total</div>
+      <div class="kpi-hint">clica per veure llista</div>
+    </div>`;
+
   animateCount('kpi-num', total);
-  const pct = Math.min(Math.round(total / 100 * 100), 100);
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-pct').textContent = pct + '%';
-  const restants = Math.max(0, 100 - total);
-  document.getElementById('kpi-sub').textContent =
-    restants > 0
-      ? `Falten ${restants} inscripcions per arribar a l'objectiu`
-      : '🎉 Objectiu de 100 assolit!';
-  document.getElementById('meta-info').innerHTML =
-    'Actualitzat<br><span>' + (data.updatedAt || '—') + '</span>';
+}
 
-  /* Sexe */
-  const byGenere = data.byGenere || {};
-  const sexeHtml = SEXE_ORDER
-    .filter(s => byGenere[s])
-    .concat(Object.keys(byGenere).filter(s => !SEXE_ORDER.includes(s) && s !== '—'))
-    .map(s => {
-      const n   = byGenere[s] || 0;
-      const pct = total ? Math.round(n/total*100) : 0;
-      return `<div class="stat-row">
-        <div class="stat-lbl">${s}</div>
-        <div class="stat-bar-w"><div class="stat-bar" style="width:${pct}%;background:${C_SEXE[s]||'#888'}"></div></div>
-        <div class="stat-n">${n}</div>
-        <div class="stat-pct">${pct}%</div>
-      </div>`;
+function renderSexe(){
+  const total = gStats.total||1;
+  const by = gStats.byGenere||{};
+  const html = SEXES.filter(s=>by[s]).map(s=>{
+    const n=by[s]; const pct=Math.round(n/total*100);
+    return `<div class="stat-row" onclick="openDrawer('Sexe: ${s}', gList.filter(j=>j.genere==='${s}'))" title="Veure ${s}">
+      <div class="slbl">${s}</div>
+      <div class="sbar-w"><div class="sbar" style="width:${pct}%;background:${C_SEXE[s]||'#888'}"></div></div>
+      <div class="sn">${n}</div><div class="sp">${pct}%</div>
+    </div>`;
+  }).join('');
+  document.getElementById('sexe-list').innerHTML = html||'<p style="color:#555;font-size:.85rem">Sense dades</p>';
+}
+
+function renderCat(){
+  const total = gStats.total||1;
+  const by = gStats.byCategoria||{};
+  const html = CATS.filter(c=>by[c]).map(c=>{
+    const n=by[c]; const pct=Math.round(n/total*100);
+    return `<div class="stat-row" onclick="openDrawer('Categoria: ${c} (${AGE[c]||''})', gList.filter(j=>j.categoria==='${c}'))" title="Veure ${c}">
+      <div class="slbl">${c}<small>${AGE[c]||''}</small></div>
+      <div class="sbar-w"><div class="sbar" style="width:${pct}%;background:${C_CAT[c]||'#888'}"></div></div>
+      <div class="sn">${n}</div><div class="sp">${pct}%</div>
+    </div>`;
+  }).join('');
+  document.getElementById('cat-list').innerHTML = html||'<p style="color:#555;font-size:.85rem">Sense dades</p>';
+}
+
+function renderMatrix(){
+  const by  = gStats.byGenere||{};
+  const byC = gStats.byCategoria||{};
+  const mx  = gStats.matrix||{};
+  const aS  = SEXES.filter(s=>by[s]);
+  const aC  = CATS.filter(c=>byC[c]);
+  if(!aS.length||!aC.length){ document.getElementById('matrix-wrap').innerHTML='<p style="color:#555;font-size:.85rem;padding:8px">Sense dades</p>'; return; }
+
+  const maxCell = Math.max(...aS.flatMap(s=>aC.map(c=>mx[s]?.[c]||0)),1);
+
+  let rows = aS.map(s=>{
+    const cells = aC.map(c=>{
+      const n=(mx[s]?.[c])||0; const w=Math.round(n/maxCell*100);
+      const label=`${s} × ${c}`;
+      return `<td class="${n?'clickable':'zero'}" onclick="${n?`openDrawer('${label}', gList.filter(j=>j.genere==='${s}'&&j.categoria==='${c}'))`:''}">
+        ${n||'—'}
+        ${n?`<div class="cbar" style="width:${w}%;background:${C_CAT[c]}"></div>`:''}
+      </td>`;
     }).join('');
-  document.getElementById('sexe-list').innerHTML = sexeHtml ||
-    '<p style="color:#666;font-size:.9rem">Sense dades encara</p>';
+    const rt=aC.reduce((a,c)=>a+(mx[s]?.[c]||0),0);
+    return `<tr>
+      <td class="lh" style="cursor:pointer" onclick="openDrawer('Sexe: ${s}', gList.filter(j=>j.genere==='${s}'))">${s}</td>
+      ${cells}
+      <td class="tot-col clickable" onclick="openDrawer('Sexe: ${s}', gList.filter(j=>j.genere==='${s}'))">${rt}</td>
+    </tr>`;
+  }).join('');
 
-  /* Categoria / edat */
-  const byCat = data.byCategoria || {};
-  const catHtml = CAT_ORDER
-    .filter(c => byCat[c])
-    .concat(Object.keys(byCat).filter(c => !CAT_ORDER.includes(c) && c !== '—'))
-    .map(c => {
-      const n   = byCat[c] || 0;
-      const pct = total ? Math.round(n/total*100) : 0;
-      return `<div class="stat-row">
-        <div class="stat-lbl">${c}<small>${AGE_RANGE[c] || ''}</small></div>
-        <div class="stat-bar-w"><div class="stat-bar" style="width:${pct}%;background:${C_CAT[c]||'#888'}"></div></div>
-        <div class="stat-n">${n}</div>
-        <div class="stat-pct">${pct}%</div>
-      </div>`;
-    }).join('');
-  document.getElementById('cat-list').innerHTML = catHtml ||
-    '<p style="color:#666;font-size:.9rem">Sense dades encara</p>';
+  document.getElementById('matrix-wrap').innerHTML=`
+    <table class="mx">
+      <thead><tr>
+        <th class="lh">Sexe \\ Cat.</th>
+        ${aC.map(c=>`<th style="cursor:pointer" onclick="openDrawer('Categoria: ${c}', gList.filter(j=>j.categoria==='${c}'))">${c}<br><span style="color:#555;font-weight:400;font-size:.68rem">${AGE[c]||''}</span></th>`).join('')}
+        <th>Total</th>
+      </tr></thead>
+      <tbody>
+        ${rows}
+        <tr class="total-row">
+          <td class="lh">Total</td>
+          ${aC.map(c=>`<td class="clickable" onclick="openDrawer('Categoria: ${c}', gList.filter(j=>j.categoria==='${c}'))">${byC[c]||0}</td>`).join('')}
+          <td class="tot-col">${gStats.total||0}</td>
+        </tr>
+      </tbody>
+    </table>`;
+}
 
-  /* Matriu sexe × categoria */
-  const matrix = data.matrix || {};
-  const activeSexe = SEXE_ORDER.filter(s => byGenere[s])
-    .concat(Object.keys(byGenere).filter(s => !SEXE_ORDER.includes(s) && s !== '—' && byGenere[s]));
-  const activeCat  = CAT_ORDER.filter(c => byCat[c])
-    .concat(Object.keys(byCat).filter(c => !CAT_ORDER.includes(c) && c !== '—' && byCat[c]));
+function renderTalles(){
+  const by = gStats.byTalla||{};
+  const talles = Object.entries(by).sort((a,b)=>{
+    const ia=TALLA_ORD.indexOf(a[0]); const ib=TALLA_ORD.indexOf(b[0]);
+    if(ia===-1&&ib===-1) return a[0].localeCompare(b[0]);
+    if(ia===-1) return 1; if(ib===-1) return -1; return ia-ib;
+  });
+  document.getElementById('talles-grid').innerHTML = talles.map(([t,n])=>`
+    <div class="talla-chip" onclick="openDrawer('Talla: ${t}', gList.filter(j=>j.talla==='${t}'))" title="Veure talla ${t}">
+      <div class="tn">${n}</div>
+      <div class="tl">${t}</div>
+    </div>`).join('') || '<p style="color:#555;font-size:.85rem">Sense dades</p>';
+}
 
-  if (activeSexe.length && activeCat.length) {
-    const maxCell = Math.max(...activeSexe.flatMap(s =>
-      activeCat.map(c => (matrix[s] && matrix[s][c]) || 0)
-    ), 1);
+function renderEquips(){
+  const equips = gStats.equipsList||[];
+  document.getElementById('equips-list').innerHTML = equips.map((e,i)=>`
+    <div class="eq-item" onclick="openDrawer('Equip: ${e.nom}', gList.filter(j=>j.equip===${JSON.stringify(e.nom)}))" title="Veure equip">
+      <div class="eq-r">${i+1}</div>
+      <div class="eq-n">${e.nom}</div>
+      <div class="eq-b">${e.count}</div>
+    </div>`).join('') || '<p style="color:#555;font-size:.85rem;padding:8px">Sense dades</p>';
+}
 
-    let rows = activeSexe.map(s => {
-      const cells = activeCat.map(c => {
-        const n   = (matrix[s] && matrix[s][c]) || 0;
-        const w   = Math.round(n / maxCell * 100);
-        const col = C_CAT[c] || '#888';
-        return `<td ${n===0?'class="zero"':''}>
-          ${n}
-          <div class="cell-bar" style="width:${w}%;background:${col};max-width:60px"></div>
-        </td>`;
-      }).join('');
-      const rowTotal = activeCat.reduce((a,c) => a + ((matrix[s] && matrix[s][c]) || 0), 0);
-      return `<tr>
-        <td class="row-h">${s}</td>
-        ${cells}
-        <td class="total-col">${rowTotal}</td>
-      </tr>`;
-    }).join('');
+/* ══════════════════════════════════════════════════
+   DRAWER
+══════════════════════════════════════════════════ */
+function openDrawer(title, jugadors){
+  document.getElementById('drawer-title').textContent = title;
+  document.getElementById('drawer-count').textContent = jugadors.length + ' jugadors';
 
-    // Fila totals
-    const totalCells = activeCat.map(c => `<td class="total-col">${byCat[c] || 0}</td>`).join('');
+  const sorted = [...jugadors].sort((a,b)=>{
+    const co={'Escoleta':0,'Premini':1,'Mini':2};
+    const dc=(co[a.categoria]??9)-(co[b.categoria]??9);
+    if(dc) return dc;
+    return a.nom.localeCompare(b.nom);
+  });
 
-    document.getElementById('matrix-wrap').innerHTML = `
-      <table class="matrix">
-        <thead>
+  if(!sorted.length){
+    document.getElementById('drawer-body').innerHTML='<div class="drawer-empty">Cap jugador amb aquest filtre</div>';
+  } else {
+    document.getElementById('drawer-body').innerHTML=`
+      <table class="dtable">
+        <thead><tr>
+          <th>#</th><th>Nom</th><th>Cat.</th><th>Sexe</th><th>Talla</th><th>Equip</th>
+        </tr></thead>
+        <tbody>${sorted.map((j,i)=>`
           <tr>
-            <th class="row-h">Sexe \\ Categoria</th>
-            ${activeCat.map(c => `<th>${c}<br><small style="color:#666;font-weight:400">${AGE_RANGE[c]||''}</small></th>`).join('')}
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows}
-          <tr class="total-row">
-            <td class="row-h">Total</td>
-            ${totalCells}
-            <td class="total-col" style="color:#fff">${total}</td>
-          </tr>
+            <td style="color:var(--muted);font-size:.78rem">${i+1}</td>
+            <td><div class="d-nom">${j.nom}</div></td>
+            <td><span class="tag tag-cat-${(j.categoria||'').toLowerCase()}">${j.categoria}</span></td>
+            <td><span class="tag tag-${j.genere==='Masculí'?'m':j.genere==='Femení'?'f':'x'}">${j.genere==='Masculí'?'M':j.genere==='Femení'?'F':'X'}</span></td>
+            <td class="d-talla">${j.talla}</td>
+            <td class="d-equip">${j.equip}</td>
+          </tr>`).join('')}
         </tbody>
       </table>`;
-  } else {
-    document.getElementById('matrix-wrap').innerHTML =
-      '<p style="color:#666;font-size:.9rem;padding:8px 0">Sense dades encara</p>';
   }
 
-  /* Talles */
-  const TALLA_ORD = ['4 anys','6 anys','8 anys','10 anys','12 anys','XS','S','M','L','XL','XXL','3XL','—'];
-  const talles = Object.entries(data.byTalla || {});
-  talles.sort((a,b) => {
-    const ia = TALLA_ORD.indexOf(a[0]); const ib = TALLA_ORD.indexOf(b[0]);
-    if (ia === -1 && ib === -1) return a[0].localeCompare(b[0]);
-    if (ia === -1) return 1; if (ib === -1) return -1;
-    return ia - ib;
-  });
-  document.getElementById('talles-list').innerHTML = talles.length
-    ? talles.map(([t,n]) => `
-        <div class="stat-row">
-          <div class="stat-lbl">${t}</div>
-          <div class="stat-bar-w"><div class="stat-bar" style="width:${Math.round(n/total*100)}%;background:#4a90d9"></div></div>
-          <div class="stat-n">${n}</div>
-        </div>`).join('')
-    : '<p style="color:#666;font-size:.9rem">Sense dades encara</p>';
-
-  /* Equips */
-  const equips = data.equipsList || [];
-  document.getElementById('equips-list').innerHTML = equips.length
-    ? equips.map((e,i) => `
-        <div class="eq-item">
-          <div class="eq-rank">${i+1}</div>
-          <div class="eq-nom">${e.nom}</div>
-          <div class="eq-badge">${e.count}</div>
-        </div>`).join('')
-    : '<p style="color:#666;font-size:.9rem;padding:8px 0">Sense dades encara</p>';
-
-  clearTimeout(refreshT);
-  refreshT = setTimeout(loadStats, 60000);
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
 }
 
-function animateCount(id, target) {
-  const el = document.getElementById(id);
-  const start = parseInt(el.textContent) || 0;
-  const t0 = performance.now();
-  const run = now => {
-    const t = Math.min((now-t0)/900, 1);
-    el.textContent = Math.round(start + (target-start) * (1-Math.pow(1-t,3)));
-    if (t < 1) requestAnimationFrame(run);
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDrawer(); });
+
+/* ══════════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════════ */
+function animateCount(id, target){
+  const el=document.getElementById(id);
+  const start=parseInt(el.textContent)||0;
+  const t0=performance.now();
+  const run=now=>{
+    const t=Math.min((now-t0)/800,1);
+    el.textContent=Math.round(start+(target-start)*(1-Math.pow(1-t,3)));
+    if(t<1) requestAnimationFrame(run);
   };
   requestAnimationFrame(run);
 }
