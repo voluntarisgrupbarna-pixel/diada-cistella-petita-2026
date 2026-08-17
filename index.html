@@ -42,11 +42,52 @@
 
     /* ── RAINBOW BAR ── */
     .rainbow-bar {
-      height: 7px;
+      height: 10px;
       background: linear-gradient(to right,
-        #FF0018 14.28%, #FFA52C 14.28% 28.56%,
-        #FFFF41 28.56% 42.84%, #008018 42.84% 57.12%,
-        #0000F9 57.12% 71.4%,  #86007D 71.4%);
+        #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982, #E40303);
+      background-size: 200% 100%;
+      animation: rainbow-slide 4s linear infinite;
+    }
+    @keyframes rainbow-slide {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* ── PRIDE BANNER ── */
+    .pride-banner {
+      background: linear-gradient(135deg, #1a0a2e 0%, #0d1a0a 50%, #1a0a0a 100%);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: 10px 20px;
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(13px, 2.5vw, 16px);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pride-banner .flag {
+      display: inline-flex;
+      gap: 3px;
+      align-items: center;
+    }
+    .pride-banner .flag span {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+    }
+    .pride-rainbow-text {
+      background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 900;
     }
 
     /* ── HEADER ── */
@@ -121,6 +162,16 @@
       background: radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
+    /* Rainbow glow bottom hero */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982, #E40303);
+      background-size: 200% 100%;
+      animation: rainbow-slide 4s linear infinite;
+    }
     .hero-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 11px;
@@ -164,10 +215,17 @@
       text-decoration: none;
       padding: 16px 40px;
       border: none;
+      outline: 3px solid transparent;
+      outline-offset: 3px;
+      position: relative;
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
     }
-    .cta-btn:hover { background: #aa0000; transform: translateY(-1px); }
+    .cta-btn:hover {
+      background: #aa0000;
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 3px #E40303, 0 0 0 6px #FF8C00, 0 0 0 9px #FFED00, 0 0 0 12px #008026, 0 0 0 15px #004CFF, 0 0 0 18px #732982;
+    }
     .cta-btn:active { transform: translateY(0); }
 
     /* ── INFO CARDS ── */
@@ -653,7 +711,7 @@
 <header>
   <img src="logo.png" alt="CB Grup Barna" class="logo">
   <div class="header-text">
-    <span class="edition">2a Edició · Juny 2026</span>
+    <span class="edition" style="background:linear-gradient(90deg,#E40303,#FF8C00,#FFED00,#008026,#004CFF,#732982);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">2a Edició · Juny 2026 🌈</span>
     <h1>Diada Cistella<br>Petita al Barna</h1>
   </div>
   <nav class="header-nav">
@@ -664,13 +722,36 @@
   </nav>
 </header>
 
+<!-- PRIDE BANNER -->
+<div class="pride-banner">
+  <div class="flag">
+    <span style="background:#E40303"></span>
+    <span style="background:#FF8C00"></span>
+    <span style="background:#FFED00"></span>
+    <span style="background:#008026"></span>
+    <span style="background:#004CFF"></span>
+    <span style="background:#732982"></span>
+  </div>
+  <span class="pride-rainbow-text">Juny · Mes de l'Orgull</span>
+  <span style="color:rgba(255,255,255,.5)">—</span>
+  <span>El bàsquet base és per a tothom</span>
+  <div class="flag">
+    <span style="background:#732982"></span>
+    <span style="background:#004CFF"></span>
+    <span style="background:#008026"></span>
+    <span style="background:#FFED00"></span>
+    <span style="background:#FF8C00"></span>
+    <span style="background:#E40303"></span>
+  </div>
+</div>
+
 <!-- HERO -->
 <section class="hero">
   <span class="hero-label">↓ Barri del Clot · Sant Martí · Barcelona</span>
   <div class="hero-lema">
     <div class="normal">SOM <span class="red">BARNA.</span></div>
     <div class="normal">SOM <span class="red">FUTUR.</span></div>
-    <div class="normal">SOM <span class="gold">ORGULL.</span></div>
+    <div class="normal">SOM <span class="pride-rainbow-text" style="font-style:italic">ORGULL.</span></div>
   </div>
   <p class="hero-phrase">
     <strong>El futur del Barna comença aquí.</strong><br>
@@ -683,8 +764,8 @@
 <section class="info-section" id="info">
   <span class="section-label">↳ Quan i on</span>
   <div class="info-grid">
-    <div class="info-card">
-      <span class="card-tag">Data</span>
+    <div class="info-card" style="border-left:4px solid transparent;border-image:linear-gradient(to bottom,#E40303,#FF8C00,#FFED00,#008026,#004CFF,#732982) 1;position:relative;">
+      <span class="card-tag" style="background:linear-gradient(90deg,#E40303,#732982);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900;">Mes Orgull 🌈</span>
       <div class="card-value"><span class="accent">13</span> JUNY</div>
       <div class="card-sub">Dissabte · 9:00 – 14:00 h</div>
     </div>
@@ -709,7 +790,7 @@
 <!-- VALORS -->
 <section class="values-section" id="valors">
   <span class="section-label">↳ Els nostres valors</span>
-  <h2 class="section-title">UN BÀSQUET<br>DE <em>BASE,</em><br>OBERT A <em>TOTHOM.</em></h2>
+  <h2 class="section-title">UN BÀSQUET<br>DE <em>BASE,</em><br>OBERT A <em class="pride-rainbow-text" style="font-style:italic">TOTHOM.</em></h2>
   <div class="values-list">
     <div class="value-item">
       <span class="value-num">01</span>
@@ -732,11 +813,11 @@
         <span>Paritat real, no simbòlica. Igualtat i respecte en cada pista.</span>
       </div>
     </div>
-    <div class="value-item">
-      <span class="value-num">04</span>
+    <div class="value-item" style="border-left: 4px solid transparent; border-image: linear-gradient(to bottom, #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982) 1; padding-left: 20px; background: linear-gradient(135deg, rgba(228,3,3,.06), rgba(115,41,130,.06)); border-radius: 0 8px 8px 0;">
+      <span class="value-num" style="background: linear-gradient(135deg, #E40303, #732982); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">04</span>
       <div class="value-text">
-        <strong>Mes de l'Orgull 🌈</strong>
-        <span>El bàsquet base també és per a tothom. Inclusió activa.</span>
+        <strong style="background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Mes de l'Orgull 🌈</strong>
+        <span>El bàsquet base també és per a tothom. Inclusió activa al club des del primer dia.</span>
       </div>
     </div>
   </div>
@@ -747,7 +828,7 @@
   <div class="quote-block">
     <div class="quote-text">"EL FUTUR DEL BARNA<br><span class="black">COMENÇA AQUÍ."</span></div>
     <div class="quote-divider"></div>
-    <div class="quote-text" style="font-size: clamp(22px,5vw,38px);">"AL BARNA, LA IGUALTAT I L'ORGULL<br><span class="black">ES JUGUEN DES DE LA BASE."</span></div>
+    <div class="quote-text" style="font-size: clamp(22px,5vw,38px);">"AL BARNA, LA IGUALTAT I L'<span class="pride-rainbow-text">ORGULL</span><br><span class="black">ES JUGUEN DES DE LA BASE."</span></div>
   </div>
 </section>
 
@@ -868,14 +949,21 @@
       </div>
     </div>
 
+    <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:14px;">
+      En enviar aquest formulari, acceptes el tractament de les dades del/la menor conforme al RGPD
+      i la protecció del menor (LOPIVI). Consulta l'
+      <a href="./avis-legal.html" target="_blank" rel="noopener" style="color:var(--white);text-decoration:underline;">Avís Legal</a>.
+    </p>
+
     <button type="submit" class="submit-btn" id="submit-btn">
       <span class="spinner" id="spinner"></span>
       <span id="submit-text">Enviar inscripció →</span>
     </button>
 
     <div class="error-box" id="error-box">
-      Hi ha hagut un error en enviar el formulari. Comprova la connexió i torna-ho a provar.
-      Si el problema persisteix, escriu-nos a <strong>voluntarisgrupbarna@gmail.com</strong>
+      ⚠️ <span id="error-msg">Error en enviar el formulari.</span><br>
+      <small>Si el problema persisteix, envia les dades i el comprovant directament a
+      <strong>voluntarisgrupbarna@gmail.com</strong> i et confirmem la inscripció.</small>
     </div>
   </form>
 
@@ -912,9 +1000,12 @@
     <a href="https://www.cbgrupbarna.info" target="_blank" rel="noopener">cbgrupbarna.info</a>
     <a href="https://www.instagram.com/cbgrupbarna" target="_blank" rel="noopener">@cbgrupbarna</a>
     <a href="mailto:voluntarisgrupbarna@gmail.com">Contacte</a>
+    <a href="./avis-legal.html">Avís Legal / RGPD</a>
   </nav>
   <div class="footer-copy">
-    © 2026 CB Grup Barna · Totes les dades recollides es tracten conforme al RGPD · voluntarisgrupbarna@gmail.com
+    © 2026 CB Grup Barna · Dades tractades conforme al RGPD i protecció del menor (LOPIVI) ·
+    <a href="./avis-legal.html" style="color:inherit;text-decoration:underline;">Avís Legal</a> ·
+    voluntarisgrupbarna@gmail.com
   </div>
 </footer>
 
@@ -933,17 +1024,18 @@
   const fileInput= document.getElementById('fitxer');
   const fileDisp = document.getElementById('file-name-display');
 
-  // Mostrar nom del fitxer seleccionat
+  // Mostrar nom del fitxer seleccionat (límit real: 4 MB base64-safe)
+  const MAX_FILE = 4 * 1024 * 1024; // 4 MB
   fileInput.addEventListener('change', () => {
     const f = fileInput.files[0];
     if (f) {
-      if (f.size > 8 * 1024 * 1024) {
-        fileDisp.textContent = '⚠️ El fitxer és massa gran (màx. 8 MB)';
+      if (f.size > MAX_FILE) {
+        fileDisp.textContent = '⚠️ El fitxer és massa gran (màx. 4 MB). Fes una foto o redueix la mida.';
         fileDisp.style.color = '#ff6666';
         fileInput.value = '';
       } else {
-        fileDisp.textContent = '✓ ' + f.name;
-        fileDisp.style.color = '';
+        fileDisp.textContent = '✓ ' + f.name + ' (' + (f.size/1024).toFixed(0) + ' KB)';
+        fileDisp.style.color = '#4CAF50';
       }
     }
   });
@@ -1020,7 +1112,10 @@
       successB.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     } catch (err) {
-      errorBox.textContent = 'Error de connexió. Comprova la teva connexió a internet i torna-ho a provar.';
+      const msg = err.message && err.message.includes('413')
+        ? 'El fitxer adjunt és massa gran. Redueix-lo a menys de 4 MB i torna a provar.'
+        : 'Error de connexió. Comprova la teva connexió a internet i torna-ho a provar.';
+      document.getElementById('error-msg').textContent = msg;
       errorBox.style.display = 'block';
       spinner.style.display  = 'none';
       submitTx.textContent   = 'Enviar inscripció →';
